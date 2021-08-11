@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:170730689421:ios:80a473fa3edc4b26cce3c4</string>
+	<key>DATABASE_URL</key>
+	<string>https://whyshyapp-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

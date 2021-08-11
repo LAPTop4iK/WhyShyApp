@@ -5,13 +5,15 @@
 //  Created by Nikita Laptyonok on 10.08.2021.
 //
 
-import UIKit 
+import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
     //MARK: - Properties
     
     private let imagePicker = UIImagePickerController()
+    private var profileImage: UIImage?
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -78,7 +80,7 @@ class RegistrationController: UIViewController {
         button.setTitleColor(UIColor(named: K.mainColor), for: .normal)
         button.backgroundColor = .white
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.layer.cornerRadius = K.UISizes.buttonCornerRadius
+        button.layer.cornerRadius = K.Sizes.buttonCornerRadius
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)
         return button
@@ -104,7 +106,26 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleRegistration() {
-        print("handleRegistration")
+        guard let profileImage = profileImage else {
+            print("handleRegistration: select profile image")
+            return
+        }
+        
+        guard let username = usernameTextField.text,
+              let fullname = fullnameTextField.text,
+              let email = emailTextField.text,
+              let password = passwordTextField.text else { return }
+        
+       let credentials = AuthCredintials(username: username, fullname: fullname, email: email, password: password, profileImage: profileImage)
+        
+        AuthService.shared.registerUser(credentials: credentials) { error, ref in
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        
     }
     
     
@@ -135,8 +156,8 @@ class RegistrationController: UIViewController {
         NSLayoutConstraint.activate(
             [plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
              plusPhotoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-             plusPhotoButton.widthAnchor.constraint(equalToConstant: K.UISizes.plusButton),
-             plusPhotoButton.heightAnchor.constraint(equalToConstant: K.UISizes.plusButton)])
+             plusPhotoButton.widthAnchor.constraint(equalToConstant: K.Sizes.plusButton),
+             plusPhotoButton.heightAnchor.constraint(equalToConstant: K.Sizes.plusButton)])
     }
     
     func addAndConfigureStackView() {
@@ -163,8 +184,9 @@ class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let profileImage = info[.editedImage] as? UIImage else { return }
+        self.profileImage = profileImage
         
-        plusPhotoButton.layer.cornerRadius = K.UISizes.plusButton / 2
+        plusPhotoButton.layer.cornerRadius = K.Sizes.plusButton / 2
         plusPhotoButton.layer.masksToBounds = true
         plusPhotoButton.imageView?.contentMode = .scaleAspectFill
         plusPhotoButton.imageView?.clipsToBounds = true

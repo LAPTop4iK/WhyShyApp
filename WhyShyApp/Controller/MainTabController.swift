@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabController: UITabBarController {
     
@@ -26,8 +27,38 @@ class MainTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
-        configureUI()
+//        logUserOut()
+        authenticateUserAndConfigureUI()
+    }
+    
+    //MARK: - API
+    
+    func fetchUser() {
+        UserService.shared.fetchUser()
+    }
+    
+    func authenticateUserAndConfigureUI() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: false, completion: nil)
+                
+            }
+        } else {
+            configureViewController()
+            configureUI()
+            fetchUser()
+        }
+    }
+    
+    func logUserOut() {
+        do {
+            try Auth.auth().signOut()
+            print("logUserOut")
+        } catch {
+            print("logUserOut: faidel to sign out. error: \(error.localizedDescription)")
+        }
     }
     
     //MARK: - Selectors
@@ -37,18 +68,6 @@ class MainTabController: UITabBarController {
     }
     
     //MARK: - Heplers
-    
-    func configureUI() {
-        
-        view.addSubview(actionButton)
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [actionButton.heightAnchor.constraint(equalToConstant: K.UISizes.actionButton),
-             actionButton.widthAnchor.constraint(equalToConstant: K.UISizes.actionButton),
-             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
-             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
-        actionButton.layer.cornerRadius = K.UISizes.actionButton / 2
-    }
     
     func configureViewController() {
         
@@ -67,6 +86,18 @@ class MainTabController: UITabBarController {
         
         viewControllers = [nav1, nav2, nav3, nav4]
         
+    }
+    
+    func configureUI() {
+        
+        view.addSubview(actionButton)
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [actionButton.heightAnchor.constraint(equalToConstant: K.Sizes.actionButton),
+             actionButton.widthAnchor.constraint(equalToConstant: K.Sizes.actionButton),
+             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
+             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
+        actionButton.layer.cornerRadius = K.Sizes.actionButton / 2
     }
     
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {

@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D041E36D57E57AAB1AFE1F9 /* Pods_WhyShyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D40A0EA0798BE8518369F1 /* Pods_WhyShyApp.framework */; };
+		8D582F3326C4264D000CD958 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3226C4264D000CD958 /* UserService.swift */; };
+		8D582F3526C42B21000CD958 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3426C42B21000CD958 /* User.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -21,10 +24,15 @@
 		8DDAA5AC26C2EBEA008956E9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDAA5AB26C2EBEA008956E9 /* LoginController.swift */; };
 		8DDAA5AE26C2EC64008956E9 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDAA5AD26C2EC64008956E9 /* RegistrationController.swift */; };
 		8DDAA5B026C2F73F008956E9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDAA5AF26C2F73F008956E9 /* Utilities.swift */; };
-		8DDAA5B226C3E594008956E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DDAA5B126C3E593008956E9 /* GoogleService-Info.plist */; };
+		8DDAA5B426C3FA94008956E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DDAA5B326C3FA94008956E9 /* GoogleService-Info.plist */; };
+		8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDAA5B526C40427008956E9 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03AA82FF5D94DB7777962300 /* Pods-WhyShyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhyShyApp.release.xcconfig"; path = "Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp.release.xcconfig"; sourceTree = "<group>"; };
+		55B2AF8D82A353E4BDF582C6 /* Pods-WhyShyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhyShyApp.debug.xcconfig"; path = "Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp.debug.xcconfig"; sourceTree = "<group>"; };
+		8D582F3226C4264D000CD958 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		8D582F3426C42B21000CD958 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +49,9 @@
 		8DDAA5AB26C2EBEA008956E9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8DDAA5AD26C2EC64008956E9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		8DDAA5AF26C2F73F008956E9 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		8DDAA5B126C3E593008956E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8DDAA5B326C3FA94008956E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8DDAA5B526C40427008956E9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F1D40A0EA0798BE8518369F1 /* Pods_WhyShyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhyShyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +59,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D041E36D57E57AAB1AFE1F9 /* Pods_WhyShyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5947C48EAE958CF6DDE86B53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1D40A0EA0798BE8518369F1 /* Pods_WhyShyApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C976A7F3F30860DD5734282 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55B2AF8D82A353E4BDF582C6 /* Pods-WhyShyApp.debug.xcconfig */,
+				03AA82FF5D94DB7777962300 /* Pods-WhyShyApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8D76CE3326C2CEDB0088939E = {
 			isa = PBXGroup;
 			children = (
 				8D76CE3E26C2CEDB0088939E /* WhyShyApp */,
 				8D76CE3D26C2CEDB0088939E /* Products */,
+				6C976A7F3F30860DD5734282 /* Pods */,
+				5947C48EAE958CF6DDE86B53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,11 +108,11 @@
 				8D76CE5526C2CF070088939E /* ViewModel */,
 				8D76CE5626C2CF180088939E /* View */,
 				8D76CE5426C2CF050088939E /* Controller */,
+				8D76CE6426C2DDB00088939E /* API */,
 				8D76CE6526C2DDBB0088939E /* Utills */,
 				8D76CE5A26C2D1860088939E /* Resources */,
-				8D76CE6426C2DDB00088939E /* API */,
 				8D76CE4D26C2CEE10088939E /* Info.plist */,
-				8DDAA5B126C3E593008956E9 /* GoogleService-Info.plist */,
+				8DDAA5B326C3FA94008956E9 /* GoogleService-Info.plist */,
 			);
 			path = WhyShyApp;
 			sourceTree = "<group>";
@@ -119,6 +149,7 @@
 		8D76CE5726C2CF1B0088939E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D582F3426C42B21000CD958 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +174,8 @@
 		8D76CE6426C2DDB00088939E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				8DDAA5B526C40427008956E9 /* AuthService.swift */,
+				8D582F3226C4264D000CD958 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -173,9 +206,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D76CE5026C2CEE10088939E /* Build configuration list for PBXNativeTarget "WhyShyApp" */;
 			buildPhases = (
+				A9E3A213CA84F44C232EBF3B /* [CP] Check Pods Manifest.lock */,
 				8D76CE3826C2CEDB0088939E /* Sources */,
 				8D76CE3926C2CEDB0088939E /* Frameworks */,
 				8D76CE3A26C2CEDB0088939E /* Resources */,
+				0B26B49A8FEF09493420A1E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,23 +260,68 @@
 			files = (
 				8D76CE4C26C2CEE10088939E /* LaunchScreen.storyboard in Resources */,
 				8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */,
-				8DDAA5B226C3E594008956E9 /* GoogleService-Info.plist in Resources */,
+				8DDAA5B426C3FA94008956E9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B26B49A8FEF09493420A1E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9E3A213CA84F44C232EBF3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhyShyApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D76CE3826C2CEDB0088939E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D582F3326C4264D000CD958 /* UserService.swift in Sources */,
 				8D76CE6126C2D3C30088939E /* NotificationsController.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
 				8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */,
 				8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
 				8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */,
+				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
+				8D582F3526C42B21000CD958 /* User.swift in Sources */,
 				8DDAA5B026C2F73F008956E9 /* Utilities.swift in Sources */,
 				8DDAA5AE26C2EC64008956E9 /* RegistrationController.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
@@ -383,6 +463,7 @@
 		};
 		8D76CE5126C2CEE10088939E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55B2AF8D82A353E4BDF582C6 /* Pods-WhyShyApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -402,6 +483,7 @@
 		};
 		8D76CE5226C2CEE10088939E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03AA82FF5D94DB7777962300 /* Pods-WhyShyApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

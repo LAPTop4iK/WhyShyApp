@@ -25,8 +25,8 @@ class Utilities {
         NSLayoutConstraint.activate(
             [imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
              imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
-             imageView.heightAnchor.constraint(equalToConstant: K.UISizes.inputImage),
-             imageView.widthAnchor.constraint(equalToConstant: K.UISizes.inputImage)])
+             imageView.heightAnchor.constraint(equalToConstant: K.Sizes.inputImage),
+             imageView.widthAnchor.constraint(equalToConstant: K.Sizes.inputImage)])
         
         view.addSubview(textField)
         NSLayoutConstraint.activate(

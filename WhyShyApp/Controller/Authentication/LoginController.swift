@@ -48,7 +48,7 @@ class LoginController: UIViewController {
         button.setTitleColor(UIColor(named: K.mainColor), for: .normal)
         button.backgroundColor = .white
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.layer.cornerRadius = K.UISizes.buttonCornerRadius
+        button.layer.cornerRadius = K.Sizes.buttonCornerRadius
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
@@ -70,7 +70,20 @@ class LoginController: UIViewController {
     //MARK: - Selectors
     
     @objc func handleLogin() {
-        print(321)
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text else { return }
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("handleLogin: login error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
+            guard let tab = window.rootViewController as? MainTabController else { return }
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowSignUp() {
@@ -97,8 +110,8 @@ class LoginController: UIViewController {
         NSLayoutConstraint.activate(
             [logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
              logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-             logoImageView.widthAnchor.constraint(equalToConstant: K.UISizes.logoImageWidth),
-             logoImageView.heightAnchor.constraint(equalToConstant: K.UISizes.logoImageHeight)])
+             logoImageView.widthAnchor.constraint(equalToConstant: K.Sizes.logoImageWidth),
+             logoImageView.heightAnchor.constraint(equalToConstant: K.Sizes.logoImageHeight)])
     }
     
     func addAndConfigureStackView() {
