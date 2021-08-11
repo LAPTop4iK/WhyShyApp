@@ -1,5 +1,5 @@
 //
-//  Explore.swift
+//  ExploreController.swift
 //  WhyShyApp
 //
 //  Created by Nikita Laptyonok on 10.08.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Explore: UIViewController {
+class ExploreController: UIViewController {
     
     //MARK: - Properties
     
@@ -15,8 +15,13 @@ class Explore: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
+        configureUI()
     }
     
     //MARK: - Heplers
+    
+    func configureUI() {
+        view.backgroundColor = .white
+        navigationItem.title = "Explore"
+    }
 }
