@@ -65,4 +65,14 @@ class Utilities {
         return button
     }
     
+    func cellButton(withImage image: UIImage?) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(image, for: .normal)
+        button.tintColor = .darkGray
+        button.imageView?.contentMode = .scaleAspectFit
+        button.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        return button
+    }
+    
 }

@@ -12,6 +12,14 @@ class MainTabController: UITabBarController {
     
     //MARK: - Properties
     
+    var user: User? {
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            feed.user = user
+        }
+    }
+    
     private let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -34,7 +42,10 @@ class MainTabController: UITabBarController {
     //MARK: - API
     
     func fetchUser() {
-        UserService.shared.fetchUser()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        UserService.shared.fetchUser(uid: uid) { user in
+            self.user = user
+        }
     }
     
     func authenticateUserAndConfigureUI() {
@@ -64,14 +75,17 @@ class MainTabController: UITabBarController {
     //MARK: - Selectors
     
     @objc func actionButtonTapped() {
-        print(123)
+        guard let user = user else { return }
+        let controller = UploadQuestionController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        present(nav, animated: true, completion: nil)
     }
     
     //MARK: - Heplers
     
     func configureViewController() {
         
-        let feed = FeedController()
+        let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let nav1 = templateNavigationController(image: UIImage(systemName: "house"), rootViewController: feed)
         
         let explore = ExploreController()

@@ -47,7 +47,7 @@ struct AuthService {
                     let values = ["username": username,
                                   "fullname": fullname,
                                   "email": email,
-                                  "prifuleImageUrl": profileImageUrl]
+                                  "profileImageUrl": profileImageUrl]
                     
                     REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
                     }

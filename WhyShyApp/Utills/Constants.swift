@@ -8,11 +8,13 @@
 import UIKit
 import Firebase
 
+
 let DB_REF = Database.database().reference()
 let REF_USERS = DB_REF.child("users")
 
 let STORAGE_REF = Storage.storage().reference()
 let STORAGE_PROFILE_IMAGES = STORAGE_REF.child("profile_images")
+let REF_QUESTIONS = DB_REF.child("questions")
 
 enum K {
     static let addButton = "PlusPhoto"
@@ -20,6 +22,11 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
+        static let questionCellButton: CGFloat = 20
+        static let imageQuestionController: CGFloat = 48
+        static let askButtonWidth: CGFloat = 64
+        static let askButtonHeight: CGFloat = 32
+        static let settingsProfileImage: CGFloat = 32
         static let buttonCornerRadius: CGFloat = 5
         static let inputImage: CGFloat = 24
         static let actionButton: CGFloat = 56

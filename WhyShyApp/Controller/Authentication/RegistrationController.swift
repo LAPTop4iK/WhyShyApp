@@ -111,7 +111,7 @@ class RegistrationController: UIViewController {
             return
         }
         
-        guard let username = usernameTextField.text,
+        guard let username = usernameTextField.text?.lowercased(),
               let fullname = fullnameTextField.text,
               let email = emailTextField.text,
               let password = passwordTextField.text else { return }

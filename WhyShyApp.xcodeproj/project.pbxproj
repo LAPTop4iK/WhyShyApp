@@ -10,6 +10,12 @@
 		7D041E36D57E57AAB1AFE1F9 /* Pods_WhyShyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D40A0EA0798BE8518369F1 /* Pods_WhyShyApp.framework */; };
 		8D582F3326C4264D000CD958 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3226C4264D000CD958 /* UserService.swift */; };
 		8D582F3526C42B21000CD958 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3426C42B21000CD958 /* User.swift */; };
+		8D582F3726C44488000CD958 /* UploadQuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3626C44488000CD958 /* UploadQuestionController.swift */; };
+		8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3826C45230000CD958 /* CaptionTextView.swift */; };
+		8D582F3B26C45A25000CD958 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3A26C45A25000CD958 /* QuestionService.swift */; };
+		8D582F3D26C518A8000CD958 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3C26C518A8000CD958 /* Question.swift */; };
+		8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3E26C51F98000CD958 /* QuestionCell.swift */; };
+		8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4026C546C1000CD958 /* QuestionViewModel.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -33,6 +39,12 @@
 		55B2AF8D82A353E4BDF582C6 /* Pods-WhyShyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhyShyApp.debug.xcconfig"; path = "Target Support Files/Pods-WhyShyApp/Pods-WhyShyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8D582F3226C4264D000CD958 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		8D582F3426C42B21000CD958 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8D582F3626C44488000CD958 /* UploadQuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestionController.swift; sourceTree = "<group>"; };
+		8D582F3826C45230000CD958 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
+		8D582F3A26C45A25000CD958 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		8D582F3C26C518A8000CD958 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		8D582F3E26C51F98000CD958 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		8D582F4026C546C1000CD958 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +138,7 @@
 				8D76CE5E26C2D3A10088939E /* ExploreController.swift */,
 				8D76CE6026C2D3C30088939E /* NotificationsController.swift */,
 				8D76CE6226C2D3D70088939E /* ConversationsController.swift */,
+				8D582F3626C44488000CD958 /* UploadQuestionController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,6 +146,7 @@
 		8D76CE5526C2CF070088939E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8D582F4026C546C1000CD958 /* QuestionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -142,6 +156,8 @@
 			children = (
 				8D76CE5B26C2D1A00088939E /* Storyboards */,
 				8D76CE4826C2CEE10088939E /* Assets.xcassets */,
+				8D582F3826C45230000CD958 /* CaptionTextView.swift */,
+				8D582F3E26C51F98000CD958 /* QuestionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				8D582F3426C42B21000CD958 /* User.swift */,
+				8D582F3C26C518A8000CD958 /* Question.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +193,7 @@
 			children = (
 				8DDAA5B526C40427008956E9 /* AuthService.swift */,
 				8D582F3226C4264D000CD958 /* UserService.swift */,
+				8D582F3A26C45A25000CD958 /* QuestionService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -314,18 +332,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D582F3326C4264D000CD958 /* UserService.swift in Sources */,
+				8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */,
 				8D76CE6126C2D3C30088939E /* NotificationsController.swift in Sources */,
+				8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
 				8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */,
 				8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
 				8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */,
 				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
+				8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */,
 				8D582F3526C42B21000CD958 /* User.swift in Sources */,
 				8DDAA5B026C2F73F008956E9 /* Utilities.swift in Sources */,
+				8D582F3726C44488000CD958 /* UploadQuestionController.swift in Sources */,
 				8DDAA5AE26C2EC64008956E9 /* RegistrationController.swift in Sources */,
+				8D582F3D26C518A8000CD958 /* Question.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
 				8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */,
+				8D582F3B26C45A25000CD958 /* QuestionService.swift in Sources */,
 				8D76CE6726C2DDD00088939E /* Constants.swift in Sources */,
 				8DDAA5AC26C2EBEA008956E9 /* LoginController.swift in Sources */,
 			);
