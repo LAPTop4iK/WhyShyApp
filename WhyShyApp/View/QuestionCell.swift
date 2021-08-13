@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol QuestionCellDelegate: AnyObject {
+    func handleProfileImageTapper(_ cell: QuestionCell)
+}
+
 class QuestionCell: UICollectionViewCell {
     
     //MARK: - Properties
@@ -15,7 +19,9 @@ class QuestionCell: UICollectionViewCell {
         didSet { configure() }
     }
     
-    private let profileImageView: UIImageView = {
+    weak var delegate: QuestionCellDelegate?
+    
+    private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -24,6 +30,10 @@ class QuestionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = K.Sizes.imageQuestionController / 2
         
         imageView.backgroundColor = .systemBlue
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
         
         return imageView
     }()
@@ -74,6 +84,10 @@ class QuestionCell: UICollectionViewCell {
     }
     
     //MARK: - Selectors
+    
+    @objc func handleProfileImageTapped() {
+        delegate?.handleProfileImageTapper(self)
+    }
     
     @objc func handleCommentTapped() {
         

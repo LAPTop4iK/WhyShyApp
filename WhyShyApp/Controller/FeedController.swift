@@ -31,6 +31,12 @@ class FeedController: UICollectionViewController {
         fetchQuestions()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     //MARK: - API
     
     func fetchQuestions() {
@@ -111,14 +117,27 @@ extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? QuestionCell else { return UICollectionViewCell() }
+        cell.delegate = self
         cell.question = questions[indexPath.item]
         return cell
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
+
 extension FeedController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
     }
+}
+
+//MARK: - QuestionCellDelegate
+
+extension FeedController: QuestionCellDelegate {
+    func handleProfileImageTapper(_ cell: QuestionCell) {
+        guard let user = cell.question?.user else { return }
+        let controller = ProfileController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+   
 }

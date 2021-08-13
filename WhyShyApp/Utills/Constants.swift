@@ -15,6 +15,7 @@ let REF_USERS = DB_REF.child("users")
 let STORAGE_REF = Storage.storage().reference()
 let STORAGE_PROFILE_IMAGES = STORAGE_REF.child("profile_images")
 let REF_QUESTIONS = DB_REF.child("questions")
+let REF_USER_QUESTIONS = DB_REF.child("user-questions")
 
 enum K {
     static let addButton = "PlusPhoto"
@@ -22,6 +23,10 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
+        static let profileFollowButtonWidth: CGFloat = 100
+        static let profileFollowButtonHeight: CGFloat = 36
+        static let profileProfileImage: CGFloat = 80
+        static let backButton: CGFloat  = 30
         static let questionCellButton: CGFloat = 20
         static let imageQuestionController: CGFloat = 48
         static let askButtonWidth: CGFloat = 64

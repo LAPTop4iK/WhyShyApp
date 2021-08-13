@@ -16,6 +16,11 @@
 		8D582F3D26C518A8000CD958 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3C26C518A8000CD958 /* Question.swift */; };
 		8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3E26C51F98000CD958 /* QuestionCell.swift */; };
 		8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4026C546C1000CD958 /* QuestionViewModel.swift */; };
+		8D582F4326C5555E000CD958 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4226C5555E000CD958 /* ProfileController.swift */; };
+		8D582F4526C55D4C000CD958 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4426C55D4C000CD958 /* ProfileHeader.swift */; };
+		8D582F4726C56D44000CD958 /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4626C56D44000CD958 /* ProfileFilterView.swift */; };
+		8D582F4926C57187000CD958 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4826C57187000CD958 /* ProfileFilterCell.swift */; };
+		8D582F4B26C587BD000CD958 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4A26C587BD000CD958 /* ProfileHeaderViewModel.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -45,6 +50,11 @@
 		8D582F3C26C518A8000CD958 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		8D582F3E26C51F98000CD958 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		8D582F4026C546C1000CD958 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
+		8D582F4226C5555E000CD958 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		8D582F4426C55D4C000CD958 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		8D582F4626C56D44000CD958 /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
+		8D582F4826C57187000CD958 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
+		8D582F4A26C587BD000CD958 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +149,7 @@
 				8D76CE6026C2D3C30088939E /* NotificationsController.swift */,
 				8D76CE6226C2D3D70088939E /* ConversationsController.swift */,
 				8D582F3626C44488000CD958 /* UploadQuestionController.swift */,
+				8D582F4226C5555E000CD958 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				8D582F4026C546C1000CD958 /* QuestionViewModel.swift */,
+				8D582F4A26C587BD000CD958 /* ProfileHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -158,6 +170,9 @@
 				8D76CE4826C2CEE10088939E /* Assets.xcassets */,
 				8D582F3826C45230000CD958 /* CaptionTextView.swift */,
 				8D582F3E26C51F98000CD958 /* QuestionCell.swift */,
+				8D582F4426C55D4C000CD958 /* ProfileHeader.swift */,
+				8D582F4626C56D44000CD958 /* ProfileFilterView.swift */,
+				8D582F4826C57187000CD958 /* ProfileFilterCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -334,13 +349,17 @@
 				8D582F3326C4264D000CD958 /* UserService.swift in Sources */,
 				8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */,
 				8D76CE6126C2D3C30088939E /* NotificationsController.swift in Sources */,
+				8D582F4926C57187000CD958 /* ProfileFilterCell.swift in Sources */,
 				8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
 				8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */,
 				8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */,
+				8D582F4326C5555E000CD958 /* ProfileController.swift in Sources */,
+				8D582F4526C55D4C000CD958 /* ProfileHeader.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
 				8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */,
 				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
+				8D582F4B26C587BD000CD958 /* ProfileHeaderViewModel.swift in Sources */,
 				8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */,
 				8D582F3526C42B21000CD958 /* User.swift in Sources */,
 				8DDAA5B026C2F73F008956E9 /* Utilities.swift in Sources */,
@@ -349,6 +368,7 @@
 				8D582F3D26C518A8000CD958 /* Question.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
 				8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */,
+				8D582F4726C56D44000CD958 /* ProfileFilterView.swift in Sources */,
 				8D582F3B26C45A25000CD958 /* QuestionService.swift in Sources */,
 				8D76CE6726C2DDD00088939E /* Constants.swift in Sources */,
 				8DDAA5AC26C2EBEA008956E9 /* LoginController.swift in Sources */,
