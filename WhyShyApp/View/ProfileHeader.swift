@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
+    func handleProfileFollow(_ header: ProfileHeader)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -55,7 +56,7 @@ class ProfileHeader: UICollectionReusableView {
         return imageView
     }()
     
-    private let profileFollowButton: UIButton = {
+    let profileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.borderColor = UIColor(named: K.mainColor)?.cgColor
@@ -128,7 +129,7 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     @objc func handleProfileFollow() {
-        
+        delegate?.handleProfileFollow(self)
     }
     
     @objc func handleFollowingTapped() {
@@ -145,7 +146,9 @@ class ProfileHeader: UICollectionReusableView {
         guard let user = user else { return }
         let viewModel = ProfileHeaderViewModel(user: user)
         
-        profileFollowButton.setTitle(viewModel.atrionButtonTitle, for: .normal)
+        profileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
+        profileFollowButton.setTitleColor(viewModel.atrionButtonColor, for: .normal)
+        profileFollowButton.layer.borderColor = viewModel.atrionButtonColor.cgColor
         followersLabel.attributedText = viewModel.followersString
         followingLabel.attributedText = viewModel.followingString
         profileImageView.sd_setImage(with: user.profileImageUrl)

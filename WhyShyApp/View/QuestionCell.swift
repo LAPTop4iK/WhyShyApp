@@ -25,9 +25,9 @@ class QuestionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.heightAnchor.constraint(equalToConstant: K.Sizes.imageQuestionController).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: K.Sizes.imageQuestionController).isActive = true
-        imageView.layer.cornerRadius = K.Sizes.imageQuestionController / 2
+        imageView.heightAnchor.constraint(equalToConstant: K.Sizes.questionProfileImage).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: K.Sizes.questionProfileImage).isActive = true
+        imageView.layer.cornerRadius = K.Sizes.questionProfileImage / 2
         
         imageView.backgroundColor = .systemBlue
         

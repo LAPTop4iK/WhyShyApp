@@ -10,12 +10,16 @@ import Firebase
 
 
 let DB_REF = Database.database().reference()
+let STORAGE_REF = Storage.storage().reference()
 let REF_USERS = DB_REF.child("users")
 
-let STORAGE_REF = Storage.storage().reference()
+
 let STORAGE_PROFILE_IMAGES = STORAGE_REF.child("profile_images")
 let REF_QUESTIONS = DB_REF.child("questions")
 let REF_USER_QUESTIONS = DB_REF.child("user-questions")
+let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
+let REF_USER_FOLLOWING = DB_REF.child("user-following")
+
 
 enum K {
     static let addButton = "PlusPhoto"
@@ -23,12 +27,13 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
+        static let exploreProfileImage: CGFloat = 40
         static let profileFollowButtonWidth: CGFloat = 100
         static let profileFollowButtonHeight: CGFloat = 36
         static let profileProfileImage: CGFloat = 80
         static let backButton: CGFloat  = 30
         static let questionCellButton: CGFloat = 20
-        static let imageQuestionController: CGFloat = 48
+        static let questionProfileImage: CGFloat = 48
         static let askButtonWidth: CGFloat = 64
         static let askButtonHeight: CGFloat = 32
         static let settingsProfileImage: CGFloat = 32

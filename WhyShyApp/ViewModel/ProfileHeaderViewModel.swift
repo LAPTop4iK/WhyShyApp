@@ -28,19 +28,34 @@ struct ProfileHeaderViewModel {
     let usernameText: String
     
     var followersString: NSAttributedString? {
-        return attributedText(withValue: 0, text: "followers")
+        return attributedText(withValue: user.stats?.followers ?? 0, text: "followers")
     }
     
     var followingString: NSAttributedString? {
-        return attributedText(withValue: 2, text: "following")
+        return attributedText(withValue: user.stats?.following ?? 0, text: "following")
     }
     
-    var atrionButtonTitle: String {
-        if user.isCurrentUser {
-            return "Edit Profile"
-        } else {
-            return "Follow"
+    var atrionButtonColor: UIColor {
+        var titleColor = UIColor(named: K.mainColor)
+        if user.isFollowed {
+            titleColor = .systemGreen
         }
+        return titleColor ?? .systemBlue
+    }
+    
+    var actionButtonTitle: String {
+        var title = "Loading"
+        if user.isCurrentUser {
+            title = "Edit Profile"
+        }
+        if !user.isFollowed && !user.isCurrentUser {
+            title = "Follow"
+        }
+        
+        if user.isFollowed {
+            title = "Following"
+        }
+        return title
         // if user is current user then set to edit profile
         //else figure out follow/unfollow
     }
