@@ -76,7 +76,7 @@ class MainTabController: UITabBarController {
     
     @objc func actionButtonTapped() {
         guard let user = user else { return }
-        let controller = UploadQuestionController(user: user)
+        let controller = UploadQuestionController(user: user, config: .question)
         let nav = UINavigationController(rootViewController: controller)
         present(nav, animated: true, completion: nil)
     }

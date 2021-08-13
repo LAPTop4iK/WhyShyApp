@@ -65,7 +65,7 @@ class UserCell: UITableViewCell {
     
     func configureViews() {
         configureProfileImageView()
-        createAndConfigureUserIncoStackView()
+        createAndConfigureUserInfoStackView()
     }
     
     func configureProfileImageView() {
@@ -77,7 +77,7 @@ class UserCell: UITableViewCell {
              profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)])
     }
     
-    func createAndConfigureUserIncoStackView() {
+    func createAndConfigureUserInfoStackView() {
         let stack = UIStackView(arrangedSubviews: [usernameLabel, fullnameLabel])
         stack.axis = .vertical
         stack.spacing = 2

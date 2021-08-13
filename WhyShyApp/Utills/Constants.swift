@@ -19,6 +19,7 @@ let REF_QUESTIONS = DB_REF.child("questions")
 let REF_USER_QUESTIONS = DB_REF.child("user-questions")
 let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
 let REF_USER_FOLLOWING = DB_REF.child("user-following")
+let REF_QUESTION_ANSWERS = DB_REF.child("question-replies")
 
 
 enum K {
@@ -34,7 +35,7 @@ enum K {
         static let backButton: CGFloat  = 30
         static let questionCellButton: CGFloat = 20
         static let questionProfileImage: CGFloat = 48
-        static let askButtonWidth: CGFloat = 64
+        static let askButtonWidth: CGFloat = 70
         static let askButtonHeight: CGFloat = 32
         static let settingsProfileImage: CGFloat = 32
         static let buttonCornerRadius: CGFloat = 5

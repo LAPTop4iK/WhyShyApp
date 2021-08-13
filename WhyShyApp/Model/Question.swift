@@ -11,7 +11,7 @@ struct Question {
     let questionId: String
     let caption: String
     let likes: Int
-    let sharedCount: Int
+    let repostCount: Int
     var timestamp: Date!
     let uid: String
     let user: User
@@ -22,7 +22,7 @@ struct Question {
         
         self.caption = dictionary["caption"] as? String ?? ""
         self.likes = dictionary["likes"] as? Int ?? 0
-        self.sharedCount = dictionary["shared"] as? Int ?? 0
+        self.repostCount = dictionary["reposts"] as? Int ?? 0
         self.uid = dictionary["uid"] as? String ?? ""
         
         if let timestamp = dictionary["timestamp"] as? Double {

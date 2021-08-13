@@ -9,6 +9,7 @@ import UIKit
 
 protocol QuestionCellDelegate: AnyObject {
     func handleProfileImageTapper(_ cell: QuestionCell)
+    func handleAnswerTapped(_ cell: QuestionCell)
 }
 
 class QuestionCell: UICollectionViewCell {
@@ -46,9 +47,9 @@ class QuestionCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var commentButton: UIButton = {
+    private lazy var answerButton: UIButton = {
         let button = Utilities().cellButton(withImage: UIImage(systemName: "bubble.right"))
-        button.addTarget(self, action: #selector(handleCommentTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleAnswerTapped), for: .touchUpInside)
         return button
     }()
     
@@ -89,8 +90,8 @@ class QuestionCell: UICollectionViewCell {
         delegate?.handleProfileImageTapper(self)
     }
     
-    @objc func handleCommentTapped() {
-        
+    @objc func handleAnswerTapped() {
+        delegate?.handleAnswerTapped(self)
     }
     
     @objc func handleRepostTapped() {
@@ -149,7 +150,7 @@ class QuestionCell: UICollectionViewCell {
     }
     
     func addAndConfigureActionsStackView() {
-        let stack = UIStackView(arrangedSubviews: [commentButton, repostButton, likeButton, shareButton])
+        let stack = UIStackView(arrangedSubviews: [answerButton, repostButton, likeButton, shareButton])
         stack.spacing = 72
         
         addSubview(stack)

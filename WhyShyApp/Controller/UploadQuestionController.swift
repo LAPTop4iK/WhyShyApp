@@ -12,6 +12,8 @@ class UploadQuestionController: UIViewController {
     //MARK: - Properties
     
     private let user: User
+    private let config: UploadQuestionConfiguration
+    private lazy var viewModel = UploadQuestionViewModel(config: config)
     
     private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -42,12 +44,22 @@ class UploadQuestionController: UIViewController {
         return imageView
     }()
     
+    private lazy var answerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .lightGray
+        label.text = "replying to @incoil"
+        label.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        return label
+    }()
+    
     private let captionTextView = CaptionTextView()
     
     //MARK: - Lifecycle
     
-    init(user: User) {
+    init(user: User, config: UploadQuestionConfiguration) {
         self.user = user
+        self.config = config
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,7 +76,7 @@ class UploadQuestionController: UIViewController {
     
     @objc func handleUploadQuestion() {
         guard let caption = captionTextView.text else { return }
-        QuestionService.shared.uploadQuestion(caption: caption) { error, ref in
+        QuestionService.shared.uploadQuestion(caption: caption, type: config) { error, ref in
             if let error = error {
                 print("handleUploadQuestion. error: \(error.localizedDescription)")
             }
@@ -86,7 +98,7 @@ class UploadQuestionController: UIViewController {
         view.backgroundColor = .white
         profileImageView.sd_setImage(with: user.profileImageUrl)
         configureNavigationBar()
-        addAndConfigureStackView()
+        addAndConfigureStackViews()
     }
     
     func configureNavigationBar() {
@@ -97,8 +109,15 @@ class UploadQuestionController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: actionButton)
     }
     
-    func addAndConfigureStackView() {
-        let stack = UIStackView(arrangedSubviews: [profileImageView, captionTextView])
+    func addAndConfigureStackViews() {
+        
+        let imageCaptionStack = UIStackView(arrangedSubviews: [profileImageView, captionTextView])
+        imageCaptionStack.spacing = 12
+        imageCaptionStack.alignment = .leading
+        
+        let stack = UIStackView(arrangedSubviews: [answerLabel, imageCaptionStack])
+        stack.axis = .vertical
+//        stack.alignment = .leading
         stack.spacing = 12
         
         view.addSubview(stack)
@@ -108,6 +127,14 @@ class UploadQuestionController: UIViewController {
             [stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
              stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
              stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
+        
+        actionButton.setTitle(viewModel.actionButtonTitle, for: .normal)
+        captionTextView.placeholderLabel.text = viewModel.placeholderText
+        
+        answerLabel.isHidden = !viewModel.shouldShowReplyLabel
+        guard let answerText = viewModel.answerText else { return }
+        answerLabel.text = answerText
     }
+    
     
 }

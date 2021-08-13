@@ -121,19 +121,35 @@ extension FeedController {
         cell.question = questions[indexPath.item]
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = QuestionController(question: questions[indexPath.item])
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 
 extension FeedController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 120)
+        let viewModel = QuestionViewModel(question: questions[indexPath.item])
+        let captionHeight = viewModel.size(forWidth: view.frame.width, andFontSize: 15.7).height
+        
+        return CGSize(width: view.frame.width, height: captionHeight + 85)
     }
 }
 
 //MARK: - QuestionCellDelegate
 
 extension FeedController: QuestionCellDelegate {
+    func handleAnswerTapped(_ cell: QuestionCell) {
+        guard let question = cell.question  else { return }
+        let controller = UploadQuestionController(user: question.user, config: .answer(question))
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
     func handleProfileImageTapper(_ cell: QuestionCell) {
         guard let user = cell.question?.user else { return }
         let controller = ProfileController(user: user)
