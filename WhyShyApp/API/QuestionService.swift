@@ -81,4 +81,30 @@ struct QuestionService {
         }
         
     }
+    
+    func likeQuestion(question: Question, completion: @escaping(DatabaseCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let likes = question.didLike ? question.likes - 1 : question.likes + 1
+        REF_QUESTIONS.child(question.questionId).child("likes").setValue(likes)
+        
+        if question.didLike {
+            // unlike question
+            REF_USER_LIKES.child(uid).child(question.questionId).removeValue { err, ref in
+                REF_QUESTION_LIKES.child(question.questionId).child(uid).removeValue(completionBlock: completion)
+            }
+        } else {
+            // like question
+            REF_USER_LIKES.child(uid).updateChildValues([question.questionId: 1]) { err, ref in
+                REF_QUESTION_LIKES.child(question.questionId).updateChildValues([uid: 1], withCompletionBlock: completion)
+            }
+        }
+    }
+    
+    func checkIfUserLikedQuestion(_ question:  Question, completion: @escaping(Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        REF_USER_LIKES.child(uid).child(question.questionId).observeSingleEvent(of: .value) { snapshot in
+            completion(snapshot.exists())
+        }
+}
 }

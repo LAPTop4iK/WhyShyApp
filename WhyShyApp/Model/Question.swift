@@ -10,11 +10,12 @@ import Foundation
 struct Question {
     let questionId: String
     let caption: String
-    let likes: Int
+    var likes: Int
     let repostCount: Int
     var timestamp: Date!
     let uid: String
     let user: User
+    var didLike = false 
     
     init(user: User, questionId: String, dictionary: [String: Any]) {
         self.user = user

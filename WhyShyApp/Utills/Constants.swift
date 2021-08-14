@@ -20,6 +20,8 @@ let REF_USER_QUESTIONS = DB_REF.child("user-questions")
 let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
 let REF_USER_FOLLOWING = DB_REF.child("user-following")
 let REF_QUESTION_ANSWERS = DB_REF.child("question-replies")
+let REF_USER_LIKES = DB_REF.child("user-likes")
+let REF_QUESTION_LIKES = DB_REF.child("question-likes")
 
 
 enum K {

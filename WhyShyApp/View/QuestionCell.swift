@@ -10,6 +10,7 @@ import UIKit
 protocol QuestionCellDelegate: AnyObject {
     func handleProfileImageTapper(_ cell: QuestionCell)
     func handleAnswerTapped(_ cell: QuestionCell)
+    func handleLikeTapped(_ cell: QuestionCell)
 }
 
 class QuestionCell: UICollectionViewCell {
@@ -99,7 +100,7 @@ class QuestionCell: UICollectionViewCell {
     }
     
     @objc func handleLikeTapped() {
-        
+        delegate?.handleLikeTapped(self)
     }
     
     @objc func handleShareTapped() {
@@ -114,6 +115,8 @@ class QuestionCell: UICollectionViewCell {
         captionLabel.text = question.caption
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         infoLabel.attributedText = viewModel.userInfoText
+        likeButton.tintColor = viewModel.likeButtonTintColor
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
     }
     
     func configureViews() {

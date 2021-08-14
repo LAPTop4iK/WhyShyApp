@@ -42,7 +42,17 @@ class FeedController: UICollectionViewController {
     func fetchQuestions() {
         QuestionService.shared.fetchQuestions { questions in
             self.questions = questions
-            
+            self.checkIfUserLikedQuestions(questions)
+        }
+    }
+    
+    func checkIfUserLikedQuestions(_ questions: [Question]) {
+        for (index, question) in questions.enumerated() {
+            QuestionService.shared.checkIfUserLikedQuestion(question) { didLike in
+                guard didLike == true else { return }
+                self.questions[index].didLike = true
+            }
+            print("ТУТ ИНДЕКС И ОН ",index, " ТУТ РАЗМЕР QUESTIONS и он ", questions.count)
         }
     }
     
@@ -142,6 +152,16 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 //MARK: - QuestionCellDelegate
 
 extension FeedController: QuestionCellDelegate {
+    func handleLikeTapped(_ cell: QuestionCell) {
+        guard let question = cell.question else { return }
+        
+        QuestionService.shared.likeQuestion(question: question) { err, ref in
+            cell.question?.didLike.toggle()
+            let likes = question.didLike ? question.likes - 1 : question.likes + 1
+            cell.question?.likes = likes
+        }
+    }
+    
     func handleAnswerTapped(_ cell: QuestionCell) {
         guard let question = cell.question  else { return }
         let controller = UploadQuestionController(user: question.user, config: .answer(question))
@@ -155,5 +175,6 @@ extension FeedController: QuestionCellDelegate {
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)
     }
+    
    
 }

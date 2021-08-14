@@ -56,6 +56,15 @@ struct QuestionViewModel {
         return title
     }
     
+    var likeButtonTintColor: UIColor {
+        return question.didLike ? .red : .darkGray
+    }
+    
+    var likeButtonImage: UIImage {
+        let imageName = question.didLike ? "heart.fill" : "heart"
+        return UIImage(systemName: imageName)!
+    }
+    
     init(question: Question) {
         self.question = question
         self.user = question.user

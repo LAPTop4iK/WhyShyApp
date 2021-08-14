@@ -189,7 +189,10 @@ class QuestionHeader: UICollectionReusableView {
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         dateLabel.text = viewModel.headerTimestamp
         repostsLabel.attributedText = viewModel.repostAttriibutedString
+        
         likesLabel.attributedText = viewModel.likesAttriibutedString
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        likeButton.tintColor = viewModel.likeButtonTintColor
     }
     
     func connfigureViews() {
