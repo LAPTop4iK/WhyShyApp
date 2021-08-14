@@ -28,6 +28,9 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
+        static let actionSheetRowHeight: CGFloat = 60
+        static let actionSheetImage: CGFloat = 20
+        static let actionSheetCancelButtonHeight: CGFloat = 50
         static let exploreProfileImage: CGFloat = 40
         static let profileFollowButtonWidth: CGFloat = 100
         static let profileFollowButtonHeight: CGFloat = 36

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol QuestionHeaderDelegate: AnyObject {
+    func showActionSheet()
+}
+
 class QuestionHeader: UICollectionReusableView {
     
     // MARK: - Properties
@@ -14,6 +18,8 @@ class QuestionHeader: UICollectionReusableView {
     var question: Question? {
         didSet { configure() }
     }
+    
+    weak var delegate: QuestionHeaderDelegate?
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -150,7 +156,8 @@ class QuestionHeader: UICollectionReusableView {
     }
     
     @objc func showActionSheet() {
-        print("showActionSheet")
+        delegate?.showActionSheet()
+        
     }
     
     @objc func handleAnswerTapped() {

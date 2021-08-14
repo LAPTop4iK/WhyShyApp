@@ -25,6 +25,9 @@
 		8D582F4F26C6BAC5000CD958 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F4E26C6BAC5000CD958 /* QuestionController.swift */; };
 		8D582F5126C6BD19000CD958 /* QuestionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5026C6BD19000CD958 /* QuestionHeader.swift */; };
 		8D582F5326C6F4E5000CD958 /* UploadQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5226C6F4E5000CD958 /* UploadQuestionViewModel.swift */; };
+		8D582F5526C7CAA9000CD958 /* ActionSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5426C7CAA9000CD958 /* ActionSheetLauncher.swift */; };
+		8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */; };
+		8D582F5926C7E658000CD958 /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -63,6 +66,9 @@
 		8D582F4E26C6BAC5000CD958 /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		8D582F5026C6BD19000CD958 /* QuestionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionHeader.swift; sourceTree = "<group>"; };
 		8D582F5226C6F4E5000CD958 /* UploadQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestionViewModel.swift; sourceTree = "<group>"; };
+		8D582F5426C7CAA9000CD958 /* ActionSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetLauncher.swift; sourceTree = "<group>"; };
+		8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
+		8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				8D582F4026C546C1000CD958 /* QuestionViewModel.swift */,
 				8D582F4A26C587BD000CD958 /* ProfileHeaderViewModel.swift */,
 				8D582F5226C6F4E5000CD958 /* UploadQuestionViewModel.swift */,
+				8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 				8D582F4826C57187000CD958 /* ProfileFilterCell.swift */,
 				8D582F4C26C67C15000CD958 /* UserCell.swift */,
 				8D582F5026C6BD19000CD958 /* QuestionHeader.swift */,
+				8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 				8D76CE6626C2DDD00088939E /* Constants.swift */,
 				8D76CE6826C2DF570088939E /* Extensions.swift */,
 				8DDAA5AF26C2F73F008956E9 /* Utilities.swift */,
+				8D582F5426C7CAA9000CD958 /* ActionSheetLauncher.swift */,
 			);
 			path = Utills;
 			sourceTree = "<group>";
@@ -365,6 +374,7 @@
 				8D582F4926C57187000CD958 /* ProfileFilterCell.swift in Sources */,
 				8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */,
 				8D582F4D26C67C15000CD958 /* UserCell.swift in Sources */,
+				8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
 				8D582F4F26C6BAC5000CD958 /* QuestionController.swift in Sources */,
 				8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */,
@@ -382,10 +392,12 @@
 				8D582F3726C44488000CD958 /* UploadQuestionController.swift in Sources */,
 				8DDAA5AE26C2EC64008956E9 /* RegistrationController.swift in Sources */,
 				8D582F3D26C518A8000CD958 /* Question.swift in Sources */,
+				8D582F5926C7E658000CD958 /* ActionSheetViewModel.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
 				8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */,
 				8D582F4726C56D44000CD958 /* ProfileFilterView.swift in Sources */,
 				8D582F3B26C45A25000CD958 /* QuestionService.swift in Sources */,
+				8D582F5526C7CAA9000CD958 /* ActionSheetLauncher.swift in Sources */,
 				8D76CE6726C2DDD00088939E /* Constants.swift in Sources */,
 				8DDAA5AC26C2EBEA008956E9 /* LoginController.swift in Sources */,
 			);
