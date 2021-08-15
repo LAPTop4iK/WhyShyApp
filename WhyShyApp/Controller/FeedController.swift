@@ -40,9 +40,15 @@ class FeedController: UICollectionViewController {
     //MARK: - API
     
     func fetchQuestions() {
+        collectionView.refreshControl?.beginRefreshing()
+        
         QuestionService.shared.fetchQuestions { questions in
             self.questions = questions
             self.checkIfUserLikedQuestions(questions)
+            
+            self.questions = questions.sorted(by: { $0.timestamp > $1.timestamp })
+            
+            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
@@ -57,6 +63,10 @@ class FeedController: UICollectionViewController {
     }
     
     //MARK: - Selectors
+    
+    @objc func handleRefresh() {
+        fetchQuestions()
+    }
     
     @objc func logout() {
         do {
@@ -86,6 +96,10 @@ class FeedController: UICollectionViewController {
         view.backgroundColor = .white
         configureCollectionView()
         configureNavigationBarIcon()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
     }
     
     func configureCollectionView() {

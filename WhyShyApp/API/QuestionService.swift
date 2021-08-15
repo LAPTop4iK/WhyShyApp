@@ -39,14 +39,24 @@ struct QuestionService {
     
     func fetchQuestions(completion: @escaping([Question]) -> Void) {
         var questions = [Question]()
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
-        REF_QUESTIONS.observe(.childAdded) { snapshot in
-            let questionId = snapshot.key
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-            guard let uid = dictionary["uid"] as? String else { return }
+        REF_USER_FOLLOWING.child(currentUid).observe(.childAdded) { snapshot in
+            let followingUid = snapshot.key
             
-            UserService.shared.fetchUser(uid: uid) { user in
-                let question = Question(user: user, questionId: questionId, dictionary: dictionary)
+            REF_USER_QUESTIONS.child(followingUid).observe(.childAdded) { snapshot in
+                let questionId = snapshot.key
+                
+                self.fetchQuestion(withQuestionId: questionId) { question in
+                    questions.append(question)
+                    completion(questions)
+                }
+            }
+        }
+        REF_USER_QUESTIONS.child(currentUid).observe(.childAdded) { snapshot in
+            let questionId = snapshot.key
+            
+            self.fetchQuestion(withQuestionId: questionId) { question in
                 questions.append(question)
                 completion(questions)
             }
