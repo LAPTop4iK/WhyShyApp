@@ -19,9 +19,10 @@ let REF_QUESTIONS = DB_REF.child("questions")
 let REF_USER_QUESTIONS = DB_REF.child("user-questions")
 let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
 let REF_USER_FOLLOWING = DB_REF.child("user-following")
-let REF_QUESTION_ANSWERS = DB_REF.child("question-replies")
+let REF_QUESTION_ANSWERS = DB_REF.child("question-answers")
 let REF_USER_LIKES = DB_REF.child("user-likes")
 let REF_QUESTION_LIKES = DB_REF.child("question-likes")
+let REF_NOTIFICATIONS = DB_REF.child("notifications")
 
 
 enum K {
@@ -30,10 +31,14 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
+        
+        static let notificationFollowButtonWidth: CGFloat = 92
+        static let notificationFollowButtonHeight: CGFloat = 32
         static let actionSheetRowHeight: CGFloat = 60
         static let actionSheetImage: CGFloat = 20
         static let actionSheetCancelButtonHeight: CGFloat = 50
         static let exploreProfileImage: CGFloat = 40
+        static let notificationProfileImage = exploreProfileImage
         static let profileFollowButtonWidth: CGFloat = 100
         static let profileFollowButtonHeight: CGFloat = 36
         static let profileProfileImage: CGFloat = 80

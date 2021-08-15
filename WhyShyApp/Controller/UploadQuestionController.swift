@@ -48,7 +48,7 @@ class UploadQuestionController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
-        label.text = "replying to @incoil"
+        label.text = "answering to @incoil"
         label.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         return label
     }()
@@ -79,6 +79,11 @@ class UploadQuestionController: UIViewController {
         QuestionService.shared.uploadQuestion(caption: caption, type: config) { error, ref in
             if let error = error {
                 print("handleUploadQuestion. error: \(error.localizedDescription)")
+                return
+            }
+            
+            if case .answer(let question) = self.config {
+                NotificationService.shared.uploadNotification(type: .answer, question: question)
             }
             
             self.dismiss(animated: true, completion: nil)
@@ -131,7 +136,7 @@ class UploadQuestionController: UIViewController {
         actionButton.setTitle(viewModel.actionButtonTitle, for: .normal)
         captionTextView.placeholderLabel.text = viewModel.placeholderText
         
-        answerLabel.isHidden = !viewModel.shouldShowReplyLabel
+        answerLabel.isHidden = !viewModel.shouldShowAnswerLabel
         guard let answerText = viewModel.answerText else { return }
         answerLabel.text = answerText
     }

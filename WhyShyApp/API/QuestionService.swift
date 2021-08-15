@@ -24,8 +24,8 @@ struct QuestionService {
         case .question:
             REF_QUESTIONS.childByAutoId().updateChildValues(values) { err, ref in
                 //update user-tweet structure after tweet upload completes
-                guard  let questionID = ref.key else { return }
-                REF_USER_QUESTIONS.child(uid).updateChildValues([questionID: 1], withCompletionBlock: completion)
+                guard let questionId = ref.key else { return }
+                REF_USER_QUESTIONS.child(uid).updateChildValues([questionId: 1], withCompletionBlock: completion)
             }
         case .answer(let question):
             REF_QUESTION_ANSWERS.child(question.questionId).childByAutoId().updateChildValues(values, withCompletionBlock: completion)
@@ -54,14 +54,20 @@ struct QuestionService {
         REF_USER_QUESTIONS.child(user.uid).observe(.childAdded) { snapshot in
             let questionId = snapshot.key
             
-            REF_QUESTIONS.child(questionId).observeSingleEvent(of: .value) { snapshot in
-                guard let dictionary = snapshot.value as? [String: Any] else { return }
-                guard let uid = dictionary["uid"] as? String else { return }
-                UserService.shared.fetchUser(uid: uid) { user in
-                    let question = Question(user: user, questionId: questionId, dictionary: dictionary)
-                    questions.append(question)
-                    completion(questions)
-                }
+            self.fetchQuestion(withQuestionId: questionId) { question in
+                questions.append(question)
+                completion(questions)
+            }
+        }
+    }
+    
+    func fetchQuestion(withQuestionId questionId: String, completion: @escaping(Question) -> Void) {
+        REF_QUESTIONS.child(questionId).observeSingleEvent(of: .value) { snapshot in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            guard let uid = dictionary["uid"] as? String else { return }
+            UserService.shared.fetchUser(uid: uid) { user in
+                let question = Question(user: user, questionId: questionId, dictionary: dictionary)
+                completion(question)
             }
         }
     }

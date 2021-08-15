@@ -159,6 +159,10 @@ extension FeedController: QuestionCellDelegate {
             cell.question?.didLike.toggle()
             let likes = question.didLike ? question.likes - 1 : question.likes + 1
             cell.question?.likes = likes
+            
+            //only upload notification if question is being liked
+            guard !question.didLike else { return }
+            NotificationService.shared.uploadNotification(type: .like, question: question)
         }
     }
     

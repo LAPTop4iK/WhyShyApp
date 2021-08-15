@@ -16,7 +16,7 @@ struct UploadQuestionViewModel {
     
     let actionButtonTitle: String
     let placeholderText: String
-    var shouldShowReplyLabel: Bool
+    var shouldShowAnswerLabel: Bool
     var answerText: String?
     
     init(config: UploadQuestionConfiguration) {
@@ -24,11 +24,11 @@ struct UploadQuestionViewModel {
         case .question:
             actionButtonTitle = "Ask"
             placeholderText = "What are you interested in?"
-            shouldShowReplyLabel = false
+            shouldShowAnswerLabel = false
         case .answer(let question):
             actionButtonTitle = "Answer"
             placeholderText = "Text your answer"
-            shouldShowReplyLabel = true
+            shouldShowAnswerLabel = true
             answerText = "Answer the question to the user @\(question.user.username)"
         }
     }

@@ -28,6 +28,10 @@
 		8D582F5526C7CAA9000CD958 /* ActionSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5426C7CAA9000CD958 /* ActionSheetLauncher.swift */; };
 		8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */; };
 		8D582F5926C7E658000CD958 /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */; };
+		8D582F5B26C837C3000CD958 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5A26C837C3000CD958 /* Notification.swift */; };
+		8D582F5D26C839A9000CD958 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5C26C839A9000CD958 /* NotificationService.swift */; };
+		8D582F5F26C84676000CD958 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5E26C84676000CD958 /* NotificationCell.swift */; };
+		8D582F6126C85B09000CD958 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6026C85B09000CD958 /* NotificationViewModel.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -69,6 +73,10 @@
 		8D582F5426C7CAA9000CD958 /* ActionSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetLauncher.swift; sourceTree = "<group>"; };
 		8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
 		8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
+		8D582F5A26C837C3000CD958 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		8D582F5C26C839A9000CD958 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8D582F5E26C84676000CD958 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		8D582F6026C85B09000CD958 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 				8D582F4A26C587BD000CD958 /* ProfileHeaderViewModel.swift */,
 				8D582F5226C6F4E5000CD958 /* UploadQuestionViewModel.swift */,
 				8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */,
+				8D582F6026C85B09000CD958 /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,6 +202,7 @@
 				8D582F4C26C67C15000CD958 /* UserCell.swift */,
 				8D582F5026C6BD19000CD958 /* QuestionHeader.swift */,
 				8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */,
+				8D582F5E26C84676000CD958 /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +212,7 @@
 			children = (
 				8D582F3426C42B21000CD958 /* User.swift */,
 				8D582F3C26C518A8000CD958 /* Question.swift */,
+				8D582F5A26C837C3000CD958 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +240,7 @@
 				8DDAA5B526C40427008956E9 /* AuthService.swift */,
 				8D582F3226C4264D000CD958 /* UserService.swift */,
 				8D582F3A26C45A25000CD958 /* QuestionService.swift */,
+				8D582F5C26C839A9000CD958 /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -376,6 +388,7 @@
 				8D582F4D26C67C15000CD958 /* UserCell.swift in Sources */,
 				8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
+				8D582F6126C85B09000CD958 /* NotificationViewModel.swift in Sources */,
 				8D582F4F26C6BAC5000CD958 /* QuestionController.swift in Sources */,
 				8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */,
 				8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */,
@@ -383,8 +396,10 @@
 				8D582F4526C55D4C000CD958 /* ProfileHeader.swift in Sources */,
 				8D582F5326C6F4E5000CD958 /* UploadQuestionViewModel.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
+				8D582F5B26C837C3000CD958 /* Notification.swift in Sources */,
 				8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */,
 				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
+				8D582F5D26C839A9000CD958 /* NotificationService.swift in Sources */,
 				8D582F4B26C587BD000CD958 /* ProfileHeaderViewModel.swift in Sources */,
 				8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */,
 				8D582F3526C42B21000CD958 /* User.swift in Sources */,
@@ -393,6 +408,7 @@
 				8DDAA5AE26C2EC64008956E9 /* RegistrationController.swift in Sources */,
 				8D582F3D26C518A8000CD958 /* Question.swift in Sources */,
 				8D582F5926C7E658000CD958 /* ActionSheetViewModel.swift in Sources */,
+				8D582F5F26C84676000CD958 /* NotificationCell.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
 				8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */,
 				8D582F4726C56D44000CD958 /* ProfileFilterView.swift in Sources */,

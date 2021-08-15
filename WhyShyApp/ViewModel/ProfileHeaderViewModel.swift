@@ -9,13 +9,13 @@ import UIKit
 
 enum ProfileFilterOptions: Int, CaseIterable {
     case questions
-    case replies
+    case answers
     case likes
     
     var description: String {
         switch self {
         case .questions: return "Questions"
-        case .replies: return "Reply"
+        case .answers: return "Answers"
         case .likes: return "Likes"
         }
     }
