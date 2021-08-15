@@ -43,22 +43,22 @@ class FeedController: UICollectionViewController {
         collectionView.refreshControl?.beginRefreshing()
         
         QuestionService.shared.fetchQuestions { questions in
-            self.questions = questions
-            self.checkIfUserLikedQuestions(questions)
-            
             self.questions = questions.sorted(by: { $0.timestamp > $1.timestamp })
+            self.checkIfUserLikedQuestions()
             
             self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
-    func checkIfUserLikedQuestions(_ questions: [Question]) {
-        for (index, question) in questions.enumerated() {
+    func checkIfUserLikedQuestions() {
+        self.questions.forEach { question in
             QuestionService.shared.checkIfUserLikedQuestion(question) { didLike in
                 guard didLike == true else { return }
-                self.questions[index].didLike = true
+                
+                if let index = self.questions.firstIndex(where: { $0.questionId == question.questionId }) {
+                    self.questions[index].didLike = true
+                }
             }
-            print("ТУТ ИНДЕКС И ОН ",index, " ТУТ РАЗМЕР QUESTIONS и он ", questions.count)
         }
     }
     
