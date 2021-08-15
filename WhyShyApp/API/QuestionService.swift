@@ -14,7 +14,7 @@ struct QuestionService {
     func uploadQuestion(caption: String, type: UploadQuestionConfiguration, completion: @escaping(DatabaseCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let values = ["uid": uid,
+        var values = ["uid": uid,
                       "caption": caption,
                       "timestamp": Int(NSDate().timeIntervalSince1970),
                       "likes": 0,
@@ -23,12 +23,16 @@ struct QuestionService {
         switch type {
         case .question:
             REF_QUESTIONS.childByAutoId().updateChildValues(values) { err, ref in
-                //update user-tweet structure after tweet upload completes
+                //update user-question structure after question upload completes
                 guard let questionId = ref.key else { return }
                 REF_USER_QUESTIONS.child(uid).updateChildValues([questionId: 1], withCompletionBlock: completion)
             }
         case .answer(let question):
-            REF_QUESTION_ANSWERS.child(question.questionId).childByAutoId().updateChildValues(values, withCompletionBlock: completion)
+            values["answeringTo"] = question.user.username
+            REF_QUESTION_ANSWERS.child(question.questionId).childByAutoId().updateChildValues(values) { err, ref in
+                guard let answerKey = ref.key else { return }
+                REF_USER_ANSWERS.child(uid).updateChildValues([question.questionId: answerKey], withCompletionBlock: completion)
+            }
         
         }
     }
@@ -72,6 +76,26 @@ struct QuestionService {
         }
     }
     
+    func fetchAnswers(forUser user: User, completion: @escaping([Question]) -> Void) {
+        var answers = [Question]()
+        
+        REF_USER_ANSWERS.child(user.uid).observe(.childAdded) { snapshot in
+            let questionKey = snapshot.key
+            guard let answerKey = snapshot.value as? String else { return }
+            
+            REF_QUESTION_ANSWERS.child(questionKey).child(answerKey).observeSingleEvent(of: .value) { snapshot in
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                guard let uid = dictionary["uid"] as? String else { return }
+                let answerId = snapshot.key
+                UserService.shared.fetchUser(uid: uid) { user in
+                    let answer = Question(user: user, questionId: answerId, dictionary: dictionary)
+                    answers.append(answer)
+                    completion(answers)
+                }
+            }
+        }
+    }
+    
     func fetchAnswers(forQuestion question: Question, completion: @escaping([Question]) -> Void) {
         var questions = [Question]()
         
@@ -86,6 +110,20 @@ struct QuestionService {
             }
         }
         
+    }
+    
+    func fetchLikes(forUser user: User, completion: @escaping([Question]) -> Void) {
+        var questions = [Question]()
+        
+        REF_USER_LIKES.child(user.uid).observe(.childAdded) { snapshot in
+            let questionId = snapshot.key
+            self.fetchQuestion(withQuestionId: questionId) { likedQuestion in
+                var question = likedQuestion
+                question.didLike = true
+                questions.append(question)
+                completion(questions)
+            }
+        }
     }
     
     func likeQuestion(question: Question, completion: @escaping(DatabaseCompletion)) {

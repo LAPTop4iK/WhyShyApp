@@ -10,6 +10,7 @@ import UIKit
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
     func handleProfileFollow(_ header: ProfileHeader)
+    func didSelect(filter: ProfileFilterOptions)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -88,12 +89,6 @@ class ProfileHeader: UICollectionReusableView {
         return label
     }()
     
-    private let underlineView: UIView = {
-       let view = UIView()
-        view.backgroundColor = UIColor(named: K.mainColor)
-        return view
-    }()
-    
     private let followingLabel: UILabel = {
        let label = UILabel()
         let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowingTapped))
@@ -165,7 +160,6 @@ class ProfileHeader: UICollectionReusableView {
         configureProfileFollowButton()
         createAndConfigureStackViews()
         configureFilterBar()
-        configureUnderlineView()
     }
     
     func configureContainerView() {
@@ -242,16 +236,7 @@ class ProfileHeader: UICollectionReusableView {
              filterBar.heightAnchor.constraint(equalToConstant: 50)])
     }
     
-    func configureUnderlineView() {
-        addSubview(underlineView)
-        underlineView.translatesAutoresizingMaskIntoConstraints = false
-        let count = CGFloat(ProfileFilterOptions.allCases.count)
-        NSLayoutConstraint.activate(
-            [underlineView.leadingAnchor.constraint(equalTo: leadingAnchor),
-             underlineView.bottomAnchor.constraint(equalTo: bottomAnchor),
-             underlineView.widthAnchor.constraint(equalToConstant: frame.width / count),
-             underlineView.heightAnchor.constraint(equalToConstant: 2)])
-    }
+    
     
     func addAndConfigureFollowStackView() {
         
@@ -261,12 +246,9 @@ class ProfileHeader: UICollectionReusableView {
 //MARK: - ProfileFilterViewDelegate
 
 extension ProfileHeader: ProfileFilterViewDelegate {
-    func filterView(_ view: ProfileFilterView, didSelect indexPath: IndexPath) {
-        guard let cell = view.collectionView.cellForItem(at: indexPath) as? ProfileFilterCell else { return }
-        let xPosition = cell.frame.origin.x
-        UIView.animate(withDuration: 0.3) {
-            self.underlineView.frame.origin.x = xPosition
-        }
+    func filterView(_ view: ProfileFilterView, didSelect index: Int) {
+        guard let filter = ProfileFilterOptions(rawValue: index) else { return }
+        delegate?.didSelect(filter: filter)
     }
 }
 

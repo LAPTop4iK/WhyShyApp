@@ -23,6 +23,7 @@ let REF_QUESTION_ANSWERS = DB_REF.child("question-answers")
 let REF_USER_LIKES = DB_REF.child("user-likes")
 let REF_QUESTION_LIKES = DB_REF.child("question-likes")
 let REF_NOTIFICATIONS = DB_REF.child("notifications")
+let REF_USER_ANSWERS = DB_REF.child("user-answers")
 
 
 enum K {

@@ -9,6 +9,8 @@ import UIKit
 
 struct QuestionViewModel {
     
+    // MARK: - Properties
+    
     let question: Question
     let user: User
     
@@ -65,6 +67,17 @@ struct QuestionViewModel {
         return UIImage(systemName: imageName)!
     }
     
+    var shouldHideAnswerLabel: Bool {
+        return !question.isAnswer
+    }
+    
+    var answerText: String? {
+        guard let answeringToUsername = question.answeringTo else { return nil }
+        return "→ replying to @\(answeringToUsername)"
+    }
+    
+    // MARK: - Lifecycle
+    
     init(question: Question) {
         self.question = question
         self.user = question.user
@@ -78,6 +91,8 @@ struct QuestionViewModel {
                                                                 .foregroundColor: UIColor.lightGray]))
          return attributedTitle
      }
+    
+    // MARK: - Helpers
     
     func size(forWidth width: CGFloat, andFontSize fontSize: CGFloat) -> CGSize {
         let measurementLabel = UILabel()

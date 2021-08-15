@@ -40,11 +40,17 @@ class QuestionCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let answerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
     private let captionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
-        label.text = "seme test text"
         return label
     }()
     
@@ -117,45 +123,49 @@ class QuestionCell: UICollectionViewCell {
         infoLabel.attributedText = viewModel.userInfoText
         likeButton.tintColor = viewModel.likeButtonTintColor
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        
+        answerLabel.isHidden = viewModel.shouldHideAnswerLabel
+        answerLabel.text = viewModel.answerText
     }
     
     func configureViews() {
         infoLabel.text = "Eddie Brock @venom"
         infoLabel.font = UIFont.systemFont(ofSize: 14)
-        configureProfileImageView()
         addAndConfigureTitleStackView()
         addAndConfigureActionsStackView()
         addAndConfigureUnderlineView()
     }
     
-    func configureProfileImageView() {
-        addSubview(profileImageView)
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate(
-            [profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-             profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)])
-    }
-    
     func addAndConfigureTitleStackView() {
-        let stack = UIStackView(arrangedSubviews: [infoLabel, captionLabel])
+        let captionStack = UIStackView(arrangedSubviews: [infoLabel, captionLabel])
+        captionStack.axis = .vertical
+        captionStack.distribution = .fillProportionally
+        captionStack.spacing = 4
+        
+        let imageCaptionStack = UIStackView(arrangedSubviews: [profileImageView, captionStack])
+        imageCaptionStack.distribution = .fillProportionally
+        imageCaptionStack.spacing = 12
+        imageCaptionStack.alignment = .leading
+        
+        let stack = UIStackView(arrangedSubviews: [answerLabel, imageCaptionStack])
         stack.axis = .vertical
+        stack.spacing = 8
         stack.distribution = .fillProportionally
-        stack.spacing = 4
         
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate(
-            [stack.topAnchor.constraint(equalTo: profileImageView.topAnchor),
-             stack.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 12),
+            [stack.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+             stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
              stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12)])
     }
     
     func addAndConfigureActionsStackView() {
         let stack = UIStackView(arrangedSubviews: [answerButton, repostButton, likeButton, shareButton])
-        stack.spacing = 72
-        
+//        stack.spacing = 30
+//        stack.distribution = .fillEqually
+        stack.spacing = 40
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
         

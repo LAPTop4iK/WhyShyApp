@@ -14,7 +14,10 @@ struct Question {
     let repostCount: Int
     var timestamp: Date!
     let user: User
-    var didLike = false 
+    var didLike = false
+    var answeringTo: String?
+    
+    var isAnswer: Bool { return answeringTo != nil } 
     
     init(user: User, questionId: String, dictionary: [String: Any]) {
         self.user = user
@@ -27,5 +30,10 @@ struct Question {
         if let timestamp = dictionary["timestamp"] as? Double {
             self.timestamp = Date(timeIntervalSince1970: timestamp)
         }
+        
+        if let answeringTo = dictionary["answeringTo"] as? String {
+            self.answeringTo = answeringTo
+        }
+        
     }
 }

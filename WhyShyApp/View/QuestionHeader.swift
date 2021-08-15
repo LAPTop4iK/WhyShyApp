@@ -75,6 +75,13 @@ class QuestionHeader: UICollectionReusableView {
         return button
     }()
     
+    private let answerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
     private let repostsLabel = UILabel()
     private let likesLabel = UILabel()
     
@@ -141,7 +148,7 @@ class QuestionHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        connfigureViews()
+        configureViews()
         
     }
     
@@ -193,15 +200,23 @@ class QuestionHeader: UICollectionReusableView {
         likesLabel.attributedText = viewModel.likesAttriibutedString
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
         likeButton.tintColor = viewModel.likeButtonTintColor
+        
+        answerLabel.isHidden = viewModel.shouldHideAnswerLabel
+        answerLabel.text = viewModel.answerText
     }
     
-    func connfigureViews() {
+    func configureViews() {
         let labelStack = UIStackView(arrangedSubviews: [fullnameLabel, usernameLabel])
         labelStack.axis = .vertical
         labelStack.spacing = -6
         
-        let stack = UIStackView(arrangedSubviews: [profileImageView, labelStack])
-        stack.spacing = 12
+        let imageCaptionStack = UIStackView(arrangedSubviews: [profileImageView, labelStack])
+        imageCaptionStack.spacing = 12
+        
+        let stack = UIStackView(arrangedSubviews: [answerLabel, imageCaptionStack])
+        stack.axis = .vertical
+        stack.spacing = 8
+        stack.distribution = .fillProportionally
         
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -238,7 +253,7 @@ class QuestionHeader: UICollectionReusableView {
              statsView.heightAnchor.constraint(equalToConstant: 40)])
         
         let actionStack = UIStackView(arrangedSubviews: [answerButton, repostButton, likeButton, shareButton])
-        actionStack.spacing = 72
+        actionStack.spacing = 40
         addSubview(actionStack)
         actionStack.translatesAutoresizingMaskIntoConstraints = false
         

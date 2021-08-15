@@ -16,8 +16,20 @@ class ProfileController: UICollectionViewController {
     
     private var user: User
     
-    private var questions = [Question]() {
-        didSet { collectionView.reloadData()  }
+    private var selectedFilter: ProfileFilterOptions = .questions {
+        didSet { collectionView.reloadData() }
+    }
+    
+    private var questions = [Question]()
+    private var likedQuestions = [Question]()
+    private var answers = [Question]()
+    
+    private var currentDataSource: [Question] {
+        switch selectedFilter {
+        case .questions: return questions
+        case .answers: return answers
+        case .likes: return likedQuestions
+        }
     }
     
     //MARK: - Lifecycle
@@ -34,7 +46,9 @@ class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        fetchTweets()
+        fetchQuestions()
+        fetchLikedQuestions()
+        fetchAnswers()
         fetchUsersStats()
         checkIfUserIsFollowed()
     }
@@ -54,9 +68,22 @@ class ProfileController: UICollectionViewController {
         }
     }
     
-    func fetchTweets() {
+    func fetchQuestions() {
         QuestionService.shared.fetchQuestions(forUser: user) { questions in
-            self.questions = questions
+            self.questions  = questions
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func fetchLikedQuestions() {
+        QuestionService.shared.fetchLikes(forUser: user) { questions in
+            self.likedQuestions = questions
+        }
+    }
+    
+    func fetchAnswers() {
+        QuestionService.shared.fetchAnswers(forUser: user) { answers in
+            self.answers = answers
         }
     }
     
@@ -74,6 +101,9 @@ class ProfileController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(QuestionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        guard let tabHeight = tabBarController?.tabBar.frame.height else { return }
+        collectionView.contentInset.bottom = tabHeight
     }
 }
 
@@ -81,12 +111,12 @@ class ProfileController: UICollectionViewController {
 
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return questions.count
+        return currentDataSource.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! QuestionCell
-        cell.question = questions[indexPath.item]
+        cell.question = currentDataSource[indexPath.item]
         return cell
         }
     }
@@ -100,6 +130,11 @@ extension ProfileController {
         header.delegate = self
         return header
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = QuestionController(question: currentDataSource[indexPath.item])
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -110,13 +145,24 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 120)
+        let viewModel = QuestionViewModel(question: currentDataSource[indexPath.item])
+        var captionHeight = viewModel.size(forWidth: view.frame.width, andFontSize: 15.7).height + 85
+        
+        if currentDataSource[indexPath.item].isAnswer {
+            captionHeight += 20
+        }
+        
+        return CGSize(width: view.frame.width, height: captionHeight)
     }
 }
 
 // MARK: - ProfileHeaderDelegate
 
 extension ProfileController: ProfileHeaderDelegate {
+    func didSelect(filter: ProfileFilterOptions) {
+        self.selectedFilter = filter
+    }
+    
     func handleProfileFollow(_ header: ProfileHeader) {
         
         if user.isCurrentUser {

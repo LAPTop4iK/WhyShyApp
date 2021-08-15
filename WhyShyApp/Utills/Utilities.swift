@@ -71,7 +71,7 @@ class Utilities {
         button.tintColor = .darkGray
         button.imageView?.contentMode = .scaleAspectFit
         button.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
         return button
     }
     
