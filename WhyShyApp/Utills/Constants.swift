@@ -32,7 +32,8 @@ enum K {
     static let mainColor = "MainColor"
     
     enum Sizes {
-        
+        static let editTitleLabelWidth: CGFloat = 100
+        static let editProfileImageView: CGFloat = 100
         static let notificationFollowButtonWidth: CGFloat = 92
         static let notificationFollowButtonHeight: CGFloat = 32
         static let actionSheetRowHeight: CGFloat = 60

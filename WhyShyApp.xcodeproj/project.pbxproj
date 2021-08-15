@@ -32,6 +32,11 @@
 		8D582F5D26C839A9000CD958 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5C26C839A9000CD958 /* NotificationService.swift */; };
 		8D582F5F26C84676000CD958 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F5E26C84676000CD958 /* NotificationCell.swift */; };
 		8D582F6126C85B09000CD958 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6026C85B09000CD958 /* NotificationViewModel.swift */; };
+		8D582F6326C96320000CD958 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6226C96320000CD958 /* EditProfileController.swift */; };
+		8D582F6626C97865000CD958 /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6526C97865000CD958 /* EditProfileHeader.swift */; };
+		8D582F6826C97F71000CD958 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6726C97F71000CD958 /* EditProfileViewModel.swift */; };
+		8D582F6A26C97FFD000CD958 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6926C97FFD000CD958 /* EditProfileCell.swift */; };
+		8D582F6C26C98F25000CD958 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6B26C98F25000CD958 /* InputTextView.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -77,6 +82,11 @@
 		8D582F5C26C839A9000CD958 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8D582F5E26C84676000CD958 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		8D582F6026C85B09000CD958 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		8D582F6226C96320000CD958 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		8D582F6526C97865000CD958 /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
+		8D582F6726C97F71000CD958 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		8D582F6926C97FFD000CD958 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
+		8D582F6B26C98F25000CD958 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +137,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8D582F6426C9782F000CD958 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8D582F4426C55D4C000CD958 /* ProfileHeader.swift */,
+				8D582F4626C56D44000CD958 /* ProfileFilterView.swift */,
+				8D582F4826C57187000CD958 /* ProfileFilterCell.swift */,
+				8D582F6526C97865000CD958 /* EditProfileHeader.swift */,
+				8D582F6926C97FFD000CD958 /* EditProfileCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		8D76CE3326C2CEDB0088939E = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +195,7 @@
 				8D582F3626C44488000CD958 /* UploadQuestionController.swift */,
 				8D582F4226C5555E000CD958 /* ProfileController.swift */,
 				8D582F4E26C6BAC5000CD958 /* QuestionController.swift */,
+				8D582F6226C96320000CD958 /* EditProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +208,7 @@
 				8D582F5226C6F4E5000CD958 /* UploadQuestionViewModel.swift */,
 				8D582F5826C7E658000CD958 /* ActionSheetViewModel.swift */,
 				8D582F6026C85B09000CD958 /* NotificationViewModel.swift */,
+				8D582F6726C97F71000CD958 /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -192,17 +216,16 @@
 		8D76CE5626C2CF180088939E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D582F6426C9782F000CD958 /* Profile */,
 				8D76CE5B26C2D1A00088939E /* Storyboards */,
 				8D76CE4826C2CEE10088939E /* Assets.xcassets */,
 				8D582F3826C45230000CD958 /* CaptionTextView.swift */,
 				8D582F3E26C51F98000CD958 /* QuestionCell.swift */,
-				8D582F4426C55D4C000CD958 /* ProfileHeader.swift */,
-				8D582F4626C56D44000CD958 /* ProfileFilterView.swift */,
-				8D582F4826C57187000CD958 /* ProfileFilterCell.swift */,
 				8D582F4C26C67C15000CD958 /* UserCell.swift */,
 				8D582F5026C6BD19000CD958 /* QuestionHeader.swift */,
 				8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */,
 				8D582F5E26C84676000CD958 /* NotificationCell.swift */,
+				8D582F6B26C98F25000CD958 /* InputTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D582F6C26C98F25000CD958 /* InputTextView.swift in Sources */,
 				8D582F5126C6BD19000CD958 /* QuestionHeader.swift in Sources */,
 				8D582F3326C4264D000CD958 /* UserService.swift in Sources */,
 				8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */,
@@ -386,6 +410,7 @@
 				8D582F4926C57187000CD958 /* ProfileFilterCell.swift in Sources */,
 				8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */,
 				8D582F4D26C67C15000CD958 /* UserCell.swift in Sources */,
+				8D582F6326C96320000CD958 /* EditProfileController.swift in Sources */,
 				8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */,
 				8D76CE6926C2DF570088939E /* Extensions.swift in Sources */,
 				8D582F6126C85B09000CD958 /* NotificationViewModel.swift in Sources */,
@@ -394,6 +419,7 @@
 				8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */,
 				8D582F4326C5555E000CD958 /* ProfileController.swift in Sources */,
 				8D582F4526C55D4C000CD958 /* ProfileHeader.swift in Sources */,
+				8D582F6A26C97FFD000CD958 /* EditProfileCell.swift in Sources */,
 				8D582F5326C6F4E5000CD958 /* UploadQuestionViewModel.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
 				8D582F5B26C837C3000CD958 /* Notification.swift in Sources */,
@@ -401,6 +427,7 @@
 				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
 				8D582F5D26C839A9000CD958 /* NotificationService.swift in Sources */,
 				8D582F4B26C587BD000CD958 /* ProfileHeaderViewModel.swift in Sources */,
+				8D582F6626C97865000CD958 /* EditProfileHeader.swift in Sources */,
 				8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */,
 				8D582F3526C42B21000CD958 /* User.swift in Sources */,
 				8DDAA5B026C2F73F008956E9 /* Utilities.swift in Sources */,
@@ -409,6 +436,7 @@
 				8D582F3D26C518A8000CD958 /* Question.swift in Sources */,
 				8D582F5926C7E658000CD958 /* ActionSheetViewModel.swift in Sources */,
 				8D582F5F26C84676000CD958 /* NotificationCell.swift in Sources */,
+				8D582F6826C97F71000CD958 /* EditProfileViewModel.swift in Sources */,
 				8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */,
 				8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */,
 				8D582F4726C56D44000CD958 /* ProfileFilterView.swift in Sources */,
