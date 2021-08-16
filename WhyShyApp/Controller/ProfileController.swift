@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "QuestionCell"
 private let headerIdentifier = "ProfileHeader"
@@ -205,6 +206,17 @@ extension ProfileController: ProfileHeaderDelegate {
 // MARK: - EditProfileControllerDelegate
 
 extension ProfileController: EditProfileControllerDelegate {
+    func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+            let nav = UINavigationController(rootViewController: LoginController())
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: false, completion: nil)
+        } catch {
+            print("logUserOut: faidel to sign out. error: \(error.localizedDescription)")
+        }
+    }
+    
     func controller(_ controller: EditProfileController, wantsToUpdate user: User) {
         controller.dismiss(animated: true, completion: nil)
         self.user = user

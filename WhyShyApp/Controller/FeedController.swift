@@ -37,6 +37,19 @@ class FeedController: UICollectionViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
+    //MARK: - Selectors
+    
+    @objc func handleRefresh() {
+        fetchQuestions()
+    }
+    
+    @objc func handleProfileImageTap() {
+        guard let user = user else { return }
+        
+        let controller = ProfileController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     //MARK: - API
     
     func fetchQuestions() {
@@ -59,34 +72,6 @@ class FeedController: UICollectionViewController {
                     self.questions[index].didLike = true
                 }
             }
-        }
-    }
-    
-    //MARK: - Selectors
-    
-    @objc func handleRefresh() {
-        fetchQuestions()
-    }
-    
-    @objc func logout() {
-        do {
-            try Auth.auth().signOut()
-            presentLoginScreen()
-        } catch {
-            print("logout: error signing out")
-        }
-    }
-    
-    
-    //MARK: - Helpers
-    
-    func presentLoginScreen() {
-        DispatchQueue.main.async {
-            let controller = LoginController()
-//            controller.delegate = self
-            let nav = UINavigationController(rootViewController: controller)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true, completion: nil)
         }
     }
     
@@ -123,6 +108,9 @@ class FeedController: UICollectionViewController {
         profileImageView.widthAnchor.constraint(equalToConstant: K.Sizes.settingsProfileImage).isActive = true
         profileImageView.layer.cornerRadius = K.Sizes.settingsProfileImage / 2
         profileImageView.layer.masksToBounds = true
+        profileImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTap))
+        profileImageView.addGestureRecognizer(tap)
         
         profileImageView.sd_setImage(with: user.profileImageUrl)
 

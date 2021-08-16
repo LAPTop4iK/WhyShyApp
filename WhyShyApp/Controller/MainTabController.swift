@@ -35,7 +35,6 @@ class MainTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        logUserOut()
         authenticateUserAndConfigureUI()
     }
     
@@ -54,21 +53,11 @@ class MainTabController: UITabBarController {
                 let nav = UINavigationController(rootViewController: LoginController())
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: false, completion: nil)
-                
             }
         } else {
             configureViewController()
             configureUI()
             fetchUser()
-        }
-    }
-    
-    func logUserOut() {
-        do {
-            try Auth.auth().signOut()
-            print("logUserOut")
-        } catch {
-            print("logUserOut: faidel to sign out. error: \(error.localizedDescription)")
         }
     }
     

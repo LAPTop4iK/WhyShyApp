@@ -159,7 +159,7 @@ class QuestionHeader: UICollectionReusableView {
     // MARK: - Selectors
     
     @objc func handleProfileImageTapped() {
-        print("handleProfileImageTapped")
+        
     }
     
     @objc func showActionSheet() {

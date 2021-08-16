@@ -98,7 +98,6 @@ extension NotificationsController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let notification = notifications[indexPath.row]
         guard let questionId = notification.questionId else { return }
-        print(questionId)
         QuestionService.shared.fetchQuestion(withQuestionId: questionId) { question in
             let controller = QuestionController(question: question)
             self.navigationController?.pushViewController(controller, animated: true)

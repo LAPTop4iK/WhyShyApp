@@ -94,7 +94,6 @@ class NotificationCell: UITableViewCell {
     // MARK: - Selector
     
     @objc func handleProfileImageTapped() {
-        print("TAP")
         delegate?.didTapProfileImage(self)
     }
     
