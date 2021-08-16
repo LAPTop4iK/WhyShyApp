@@ -61,6 +61,7 @@ class FeedController: UICollectionViewController {
             
             self.collectionView.refreshControl?.endRefreshing()
         }
+        self.collectionView.refreshControl?.endRefreshing()
     }
     
     func checkIfUserLikedQuestions() {

@@ -49,16 +49,23 @@ class RegistrationController: UIViewController {
     
     private let fullnameTextField: UITextField = {
         let textField = Utilities().textField(withPlaceholder: "Full Name")
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .words
         return textField
     }()
     
     private let usernameTextField: UITextField = {
         let textField = Utilities().textField(withPlaceholder: "Username")
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         return textField
     }()
     
     private let emailTextField: UITextField = {
         let textField = Utilities().textField(withPlaceholder: "Email")
+        textField.keyboardType = .emailAddress
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         return textField
     }()
     
