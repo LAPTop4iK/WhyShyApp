@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "BlueLogo.png",
+      "filename" : "OrangeLogo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "BlueLogo@2x.png",
+      "filename" : "OrangeLogo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "BlueLogo@3x.png",
+      "filename" : "OrangeLogo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

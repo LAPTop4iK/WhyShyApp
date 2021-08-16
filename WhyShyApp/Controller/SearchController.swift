@@ -115,7 +115,13 @@ extension SearchController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
-        let controller = ProfileController(user: user)
+        let controller: UIViewController
+        switch config {
+        case .messages:
+        controller = ChatController(user: user)
+        case .userSearch:
+        controller = ProfileController(user: user)
+        }
         navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -30,6 +30,9 @@ struct UserService {
             guard let dictionary = snapshot.value as? [String: AnyObject] else { return }
             let user = User(uid: uid, dictionary: dictionary)
             users.append(user)
+            if let i = users.firstIndex(where: { $0.uid == Auth.auth().currentUser?.uid}) {
+                users.remove(at: i)
+            }
             completion(users)
         }
     }

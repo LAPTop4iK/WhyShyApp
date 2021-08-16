@@ -29,7 +29,7 @@ class QuestionHeader: UICollectionReusableView {
         imageView.widthAnchor.constraint(equalToConstant: K.Sizes.questionProfileImage).isActive = true
         imageView.layer.cornerRadius = K.Sizes.questionProfileImage / 2
         
-        imageView.backgroundColor = .systemBlue
+        imageView.backgroundColor = UIColor(named: K.mainColor)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
         imageView.addGestureRecognizer(tap)
@@ -118,32 +118,6 @@ class QuestionHeader: UICollectionReusableView {
         return view
     }()
     
-    
-    private lazy var answerButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "bubble.right"))
-        button.addTarget(self, action: #selector(handleAnswerTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var repostButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "arrow.triangle.2.circlepath"))
-        button.addTarget(self, action: #selector(handleRepostTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var likeButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "heart"))
-        button.addTarget(self, action: #selector(handleLikeTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var shareButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "square.and.arrow.up"))
-        button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -167,21 +141,6 @@ class QuestionHeader: UICollectionReusableView {
         
     }
     
-    @objc func handleAnswerTapped() {
-        
-    }
-    
-    @objc func handleRepostTapped() {
-        
-    }
-    
-    @objc func handleLikeTapped() {
-        
-    }
-    
-    @objc func handleShareTapped() {
-        
-    }
     
     // MARK: - Helpers
     
@@ -198,8 +157,8 @@ class QuestionHeader: UICollectionReusableView {
         repostsLabel.attributedText = viewModel.repostAttriibutedString
         
         likesLabel.attributedText = viewModel.likesAttriibutedString
-        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
-        likeButton.tintColor = viewModel.likeButtonTintColor
+//        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+//        likeButton.tintColor = viewModel.likeButtonTintColor
         
         answerLabel.isHidden = viewModel.shouldHideAnswerLabel
         answerLabel.text = viewModel.answerText
@@ -241,25 +200,16 @@ class QuestionHeader: UICollectionReusableView {
         optionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [optionButton.centerYAnchor.constraint(equalTo: stack.centerYAnchor),
-             optionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+             optionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
              optionButton.widthAnchor.constraint(equalToConstant: 15)])
         
         addSubview(statsView)
         statsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [statsView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 12),
+            [statsView.bottomAnchor.constraint(equalTo: bottomAnchor),
              statsView.trailingAnchor.constraint(equalTo: trailingAnchor),
              statsView.leadingAnchor.constraint(equalTo: leadingAnchor),
-             statsView.heightAnchor.constraint(equalToConstant: 40)])
-        
-        let actionStack = UIStackView(arrangedSubviews: [answerButton, repostButton, likeButton, shareButton])
-        actionStack.spacing = 40
-        addSubview(actionStack)
-        actionStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate(
-            [actionStack.topAnchor.constraint(equalTo: statsView.bottomAnchor, constant: 16),
-             actionStack.centerXAnchor.constraint(equalTo: centerXAnchor)])
+             statsView.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 20)])
     }
     
 }

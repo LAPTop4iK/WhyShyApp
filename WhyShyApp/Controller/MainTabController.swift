@@ -90,6 +90,7 @@ class MainTabController: UITabBarController {
     
     func configureViewController() {
         
+        
         let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let nav1 = templateNavigationController(image: UIImage(systemName: "house"), rootViewController: feed)
         

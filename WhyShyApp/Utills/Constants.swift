@@ -14,6 +14,7 @@ let STORAGE_REF = Storage.storage().reference()
 let REF_USERS = DB_REF.child("users")
 
 
+
 let STORAGE_PROFILE_IMAGES = STORAGE_REF.child("profile_images")
 let REF_QUESTIONS = DB_REF.child("questions")
 let REF_USER_QUESTIONS = DB_REF.child("user-questions")
@@ -25,11 +26,24 @@ let REF_QUESTION_LIKES = DB_REF.child("question-likes")
 let REF_NOTIFICATIONS = DB_REF.child("notifications")
 let REF_USER_ANSWERS = DB_REF.child("user-answers")
 
+let REF_MESSAGES = DB_REF.child("messages")
+let REF_USER_MESSAGES = DB_REF.child("user-messages")
+
+
+
+
 
 enum K {
     static let addButton = "PlusPhoto"
     static let blueLogo = "BlueLogo"
     static let mainColor = "MainColor"
+    
+    enum MessageSizes {
+        static let bubbleCornerRadius: CGFloat = 12
+        static let smallProfileImage: CGFloat = 32
+        static let sendButtonSize: CGFloat = 50
+        static let cellProfileImage: CGFloat = 56
+    }
     
     enum Sizes {
         static let editTitleLabelWidth: CGFloat = 100

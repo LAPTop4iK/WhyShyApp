@@ -11,6 +11,8 @@ class LoginController: UIViewController {
     
     //MARK: - Properties
     
+    private var viewModel = LoginViewModel()
+        
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -46,13 +48,7 @@ class LoginController: UIViewController {
     }()
     
     private let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(UIColor(named: K.mainColor), for: .normal)
-        button.backgroundColor = .white
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.layer.cornerRadius = K.Sizes.buttonCornerRadius
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        let button = Utilities().authButton(withTitle: "Log In")
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
@@ -67,21 +63,32 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
     }
     
     //MARK: - Selectors
     
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        checkFormStatus()
+    }
+    
     @objc func handleLogin() {
         guard let email = emailTextField.text,
               let password = passwordTextField.text else { return }
-        
+        showLoader(true, withText: "Logging in")
         AuthService.shared.logUserIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                print("handleLogin: login error: \(error.localizedDescription)")
+                self.showLoader(false)
+                self.showError(error.localizedDescription)
                 return
             }
-            
+            self.showLoader(false)
             guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
             guard let tab = window.rootViewController as? MainTabController else { return }
             tab.authenticateUserAndConfigureUI()
@@ -91,13 +98,15 @@ class LoginController: UIViewController {
     
     @objc func handleShowSignUp() {
         let controller = RegistrationController()
-        
         navigationController?.pushViewController(controller, animated: true)
     }
     
     //MARK: - Helpers
     
     func configureUI() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        configureGradientLayer()
         view.backgroundColor = UIColor(named: K.mainColor)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.isHidden = true
@@ -141,4 +150,17 @@ class LoginController: UIViewController {
              dontHaveAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)])
     }
     
+}
+
+//MARK: - AuthenticationControllerProtocol
+extension LoginController: AuthenticationControllerProtocol {
+    func checkFormStatus() {
+        if viewModel.formIsValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        }
+    }
 }

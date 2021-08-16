@@ -71,7 +71,20 @@ class Utilities {
         button.tintColor = .darkGray
         button.imageView?.contentMode = .scaleAspectFit
         button.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        return button
+    }
+    
+    func authButton(withTitle title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(UIColor(named: K.mainColor), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        button.isEnabled = false
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.cornerRadius = K.Sizes.buttonCornerRadius
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        
         return button
     }
     

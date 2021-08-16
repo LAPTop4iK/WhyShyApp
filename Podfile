@@ -12,5 +12,7 @@ target 'WhyShyApp' do
 	pod 'Firebase/Storage'
 	pod 'Firebase/Auth'
 	pod 'SDWebImage', '~> 5.0'
+	pod 'JGProgressHUD'
+	pod 'Firebase/Firestore'
 
 end

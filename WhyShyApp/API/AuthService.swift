@@ -24,7 +24,7 @@ struct AuthService {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
     
-    func registerUser(credentials: AuthCredintials, completion: @escaping (Error?, DatabaseReference) -> Void) {
+    func registerUser(credentials: AuthCredintials, completion: ((Error?) -> Void)?) {
         let username = credentials.username
         let fullname = credentials.fullname
         let email = credentials.email
@@ -38,7 +38,7 @@ struct AuthService {
                 
                 Auth.auth().createUser(withEmail: email, password: password) { result, error in
                     if let error = error {
-                        print("handleRegistration: error is \(error.localizedDescription)")
+                        completion!(error)
                         return
                     }
                     
@@ -49,7 +49,7 @@ struct AuthService {
                                   "email": email,
                                   "profileImageUrl": profileImageUrl]
                     
-                    REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
+                    REF_USERS.child(uid).updateChildValues(values)
                     }
                 }
             }

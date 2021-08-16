@@ -30,7 +30,7 @@ class NotificationCell: UITableViewCell {
         imageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
         imageView.layer.cornerRadius = 40 / 2
         
-        imageView.backgroundColor = .systemBlue
+        imageView.backgroundColor = UIColor(named: K.mainColor)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
         imageView.addGestureRecognizer(tap)

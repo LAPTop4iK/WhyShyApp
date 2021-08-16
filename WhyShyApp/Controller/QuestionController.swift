@@ -101,7 +101,7 @@ extension QuestionController: UICollectionViewDelegateFlowLayout {
         let viewModel = QuestionViewModel(question: question)
         let captionHeight = viewModel.size(forWidth: view.frame.width, andFontSize: 19.6).height
         
-        return CGSize(width: view.frame.width, height: captionHeight + 210)
+        return CGSize(width: view.frame.width, height: captionHeight + 160)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

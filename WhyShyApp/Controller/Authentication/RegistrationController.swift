@@ -14,6 +14,7 @@ class RegistrationController: UIViewController {
     
     private let imagePicker = UIImagePickerController()
     private var profileImage: UIImage?
+    private var viewModel = RegistrationViewModel()
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -82,13 +83,7 @@ class RegistrationController: UIViewController {
     }()
     
     private let registrationButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
-        button.setTitleColor(UIColor(named: K.mainColor), for: .normal)
-        button.backgroundColor = .white
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.layer.cornerRadius = K.Sizes.buttonCornerRadius
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        let button = Utilities().authButton(withTitle: "Sign Up")
         button.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)
         return button
     }()
@@ -100,9 +95,38 @@ class RegistrationController: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         configureUI()
+        configureNotificationObservers()
     }
     
     //MARK: - Selectors
+    
+    @objc func textDidChange(sender: UITextField) {
+        switch sender {
+        case emailTextField:
+            viewModel.email = sender.text
+        case fullnameTextField:
+            viewModel.fullName = sender.text
+        case usernameTextField:
+            viewModel.userName = sender.text
+        case passwordTextField:
+            viewModel.password = sender.text
+        default:
+            break
+        }
+        checkFormStatus()
+    }
+    
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     
     @objc func handleAddProfilePhoto() {
         present(imagePicker, animated: true, completion: nil)
@@ -113,18 +137,24 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleRegistration() {
-        guard let profileImage = profileImage else {
-            return
-        }
+        guard let profileImage = profileImage else { return }
         
         guard let username = usernameTextField.text?.lowercased(),
               let fullname = fullnameTextField.text,
               let email = emailTextField.text,
               let password = passwordTextField.text else { return }
+        showLoader(true,withText: "Signing You UP")
+
         
        let credentials = AuthCredintials(username: username, fullname: fullname, email: email, password: password, profileImage: profileImage)
         
-        AuthService.shared.registerUser(credentials: credentials) { error, ref in
+        AuthService.shared.registerUser(credentials: credentials) { error in
+            if let error = error {
+                self.showLoader(false)
+                self.showError(error.localizedDescription)
+                return
+            }
+            self.showLoader(false)
             guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
             guard let tab = window.rootViewController as? MainTabController else { return }
             tab.authenticateUserAndConfigureUI()
@@ -138,10 +168,21 @@ class RegistrationController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
+        configureGradientLayer()
         view.backgroundColor = UIColor(named: K.mainColor)
         configureDontHaveAnAccountButton()
         configurePlusPhotoButton()
         addAndConfigureStackView()
+    }
+    
+    func configureNotificationObservers() {
+        [emailTextField, fullnameTextField, usernameTextField, passwordTextField].forEach {
+            $0.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     
@@ -204,3 +245,17 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         dismiss(animated: true, completion: nil)
     }
 }
+
+//MARK: - AuthenticationControllerProtocol
+extension RegistrationController: AuthenticationControllerProtocol {
+    func checkFormStatus() {
+        if viewModel.formIsValid {
+            registrationButton.isEnabled = true
+            registrationButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        } else {
+            registrationButton.isEnabled = false
+            registrationButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        }
+    }
+}
+

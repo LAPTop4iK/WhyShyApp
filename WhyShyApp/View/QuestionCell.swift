@@ -31,7 +31,7 @@ class QuestionCell: UICollectionViewCell {
         imageView.widthAnchor.constraint(equalToConstant: K.Sizes.questionProfileImage).isActive = true
         imageView.layer.cornerRadius = K.Sizes.questionProfileImage / 2
         
-        imageView.backgroundColor = .systemBlue
+        imageView.backgroundColor = UIColor(named: K.mainColor)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
         imageView.addGestureRecognizer(tap)
@@ -60,21 +60,9 @@ class QuestionCell: UICollectionViewCell {
         return button
     }()
     
-    private lazy var repostButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "arrow.triangle.2.circlepath"))
-        button.addTarget(self, action: #selector(handleRepostTapped), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var likeButton: UIButton = {
         let button = Utilities().cellButton(withImage: UIImage(systemName: "heart"))
         button.addTarget(self, action: #selector(handleLikeTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var shareButton: UIButton = {
-        let button = Utilities().cellButton(withImage: UIImage(systemName: "square.and.arrow.up"))
-        button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         return button
     }()
     
@@ -101,16 +89,8 @@ class QuestionCell: UICollectionViewCell {
         delegate?.handleAnswerTapped(self)
     }
     
-    @objc func handleRepostTapped() {
-        
-    }
-    
     @objc func handleLikeTapped() {
         delegate?.handleLikeTapped(self)
-    }
-    
-    @objc func handleShareTapped() {
-        
     }
     
     //MARK: - Helpers
@@ -123,6 +103,9 @@ class QuestionCell: UICollectionViewCell {
         infoLabel.attributedText = viewModel.userInfoText
         likeButton.tintColor = viewModel.likeButtonTintColor
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        
+        likeButton.isHidden = viewModel.shouldHideActionButton
+        answerButton.isHidden = viewModel.shouldHideActionButton
         
         answerLabel.isHidden = viewModel.shouldHideAnswerLabel
         answerLabel.text = viewModel.answerText
@@ -162,16 +145,19 @@ class QuestionCell: UICollectionViewCell {
     }
     
     func addAndConfigureActionsStackView() {
-        let stack = UIStackView(arrangedSubviews: [answerButton, repostButton, likeButton, shareButton])
+        let spacerView = UIView()
+        let stack = UIStackView(arrangedSubviews: [spacerView, answerButton, likeButton])
 //        stack.spacing = 30
-//        stack.distribution = .fillEqually
-        stack.spacing = 40
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 10
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-             stack.centerXAnchor.constraint(equalTo: centerXAnchor)])
+             stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+             stack.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -12)])
     }
     
     func addAndConfigureUnderlineView() {

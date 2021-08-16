@@ -17,13 +17,13 @@ class UserCell: UITableViewCell {
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.heightAnchor.constraint(equalToConstant: K.Sizes.exploreProfileImage).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: K.Sizes.exploreProfileImage).isActive = true
         imageView.layer.cornerRadius = K.Sizes.exploreProfileImage / 2
         
-        imageView.backgroundColor = .systemBlue
+        imageView.backgroundColor = UIColor(named: K.mainColor)
         
         return imageView
     }()

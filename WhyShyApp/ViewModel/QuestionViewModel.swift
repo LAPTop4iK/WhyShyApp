@@ -71,6 +71,10 @@ struct QuestionViewModel {
         return !question.isAnswer
     }
     
+    var shouldHideActionButton: Bool {
+        return question.isAnswer
+    }
+    
     var answerText: String? {
         guard let answeringToUsername = question.answeringTo else { return nil }
         return "→ replying to @\(answeringToUsername)"
