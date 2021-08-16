@@ -43,7 +43,7 @@
 		8D76CE4C26C2CEE10088939E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4A26C2CEE10088939E /* LaunchScreen.storyboard */; };
 		8D76CE5926C2D0660088939E /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE5826C2D0660088939E /* MainTabController.swift */; };
 		8D76CE5D26C2D3440088939E /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE5C26C2D3440088939E /* FeedController.swift */; };
-		8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE5E26C2D3A10088939E /* ExploreController.swift */; };
+		8D76CE5F26C2D3A10088939E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE5E26C2D3A10088939E /* SearchController.swift */; };
 		8D76CE6126C2D3C30088939E /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE6026C2D3C30088939E /* NotificationsController.swift */; };
 		8D76CE6326C2D3D70088939E /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE6226C2D3D70088939E /* ConversationsController.swift */; };
 		8D76CE6726C2DDD00088939E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE6626C2DDD00088939E /* Constants.swift */; };
@@ -95,7 +95,7 @@
 		8D76CE4D26C2CEE10088939E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D76CE5826C2D0660088939E /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		8D76CE5C26C2D3440088939E /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
-		8D76CE5E26C2D3A10088939E /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
+		8D76CE5E26C2D3A10088939E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		8D76CE6026C2D3C30088939E /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		8D76CE6226C2D3D70088939E /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		8D76CE6626C2DDD00088939E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				8DDAA5AA26C2EBCB008956E9 /* Authentication */,
 				8D76CE5826C2D0660088939E /* MainTabController.swift */,
 				8D76CE5C26C2D3440088939E /* FeedController.swift */,
-				8D76CE5E26C2D3A10088939E /* ExploreController.swift */,
+				8D76CE5E26C2D3A10088939E /* SearchController.swift */,
 				8D76CE6026C2D3C30088939E /* NotificationsController.swift */,
 				8D76CE6226C2D3D70088939E /* ConversationsController.swift */,
 				8D582F3626C44488000CD958 /* UploadQuestionController.swift */,
@@ -422,7 +422,7 @@
 				8D582F5326C6F4E5000CD958 /* UploadQuestionViewModel.swift in Sources */,
 				8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */,
 				8D582F5B26C837C3000CD958 /* Notification.swift in Sources */,
-				8D76CE5F26C2D3A10088939E /* ExploreController.swift in Sources */,
+				8D76CE5F26C2D3A10088939E /* SearchController.swift in Sources */,
 				8DDAA5B626C40427008956E9 /* AuthService.swift in Sources */,
 				8D582F5D26C839A9000CD958 /* NotificationService.swift in Sources */,
 				8D582F4B26C587BD000CD958 /* ProfileHeaderViewModel.swift in Sources */,

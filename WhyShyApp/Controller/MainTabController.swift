@@ -8,9 +8,16 @@
 import UIKit
 import Firebase
 
+enum ActionButtonConfiguration {
+    case question
+    case message
+}
+
 class MainTabController: UITabBarController {
     
     //MARK: - Properties
+    
+    private var buttonConfig: ActionButtonConfiguration = .question
     
     var user: User? {
         didSet {
@@ -35,6 +42,7 @@ class MainTabController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         authenticateUserAndConfigureUI()
     }
     
@@ -64,8 +72,16 @@ class MainTabController: UITabBarController {
     //MARK: - Selectors
     
     @objc func actionButtonTapped() {
-        guard let user = user else { return }
-        let controller = UploadQuestionController(user: user, config: .question)
+        
+        let controller: UIViewController
+        
+        switch buttonConfig {
+        case .question:
+            guard let user = user else { return }
+            controller = UploadQuestionController(user: user, config: .question)
+        case .message:
+            controller = SearchController(config: .messages)
+        }
         let nav = UINavigationController(rootViewController: controller)
         present(nav, animated: true, completion: nil)
     }
@@ -77,7 +93,7 @@ class MainTabController: UITabBarController {
         let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let nav1 = templateNavigationController(image: UIImage(systemName: "house"), rootViewController: feed)
         
-        let explore = ExploreController()
+        let explore = SearchController(config: .userSearch)
         let nav2 = templateNavigationController(image: UIImage(systemName: "magnifyingglass"), rootViewController: explore)
         
         let notifications = NotificationsController()
@@ -109,5 +125,14 @@ class MainTabController: UITabBarController {
         navigationController.navigationBar.barTintColor = .white
         return navigationController
     }
-    
+}
+
+extension MainTabController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let index = viewControllers?.firstIndex(of: viewController)
+        let image = index == 3 ? UIImage(systemName: "envelope") : UIImage(systemName: "text.badge.plus")
+        actionButton.setImage(image, for: .normal)
+        buttonConfig = index == 3 ? .message : .question
+        
+    }
 }
