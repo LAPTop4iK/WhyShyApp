@@ -11,7 +11,7 @@
 		8D582F3326C4264D000CD958 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3226C4264D000CD958 /* UserService.swift */; };
 		8D582F3526C42B21000CD958 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3426C42B21000CD958 /* User.swift */; };
 		8D582F3726C44488000CD958 /* UploadQuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3626C44488000CD958 /* UploadQuestionController.swift */; };
-		8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3826C45230000CD958 /* CaptionTextView.swift */; };
+		8D582F3926C45230000CD958 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3826C45230000CD958 /* InputTextView.swift */; };
 		8D582F3B26C45A25000CD958 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3A26C45A25000CD958 /* QuestionService.swift */; };
 		8D582F3D26C518A8000CD958 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3C26C518A8000CD958 /* Question.swift */; };
 		8D582F3F26C51F98000CD958 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F3E26C51F98000CD958 /* QuestionCell.swift */; };
@@ -36,7 +36,6 @@
 		8D582F6626C97865000CD958 /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6526C97865000CD958 /* EditProfileHeader.swift */; };
 		8D582F6826C97F71000CD958 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6726C97F71000CD958 /* EditProfileViewModel.swift */; };
 		8D582F6A26C97FFD000CD958 /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6926C97FFD000CD958 /* EditProfileCell.swift */; };
-		8D582F6C26C98F25000CD958 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D582F6B26C98F25000CD958 /* InputTextView.swift */; };
 		8D76CE4026C2CEDB0088939E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */; };
 		8D76CE4226C2CEDB0088939E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */; };
 		8D76CE4926C2CEE10088939E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76CE4826C2CEE10088939E /* Assets.xcassets */; };
@@ -61,7 +60,7 @@
 		8D582F3226C4264D000CD958 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		8D582F3426C42B21000CD958 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8D582F3626C44488000CD958 /* UploadQuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuestionController.swift; sourceTree = "<group>"; };
-		8D582F3826C45230000CD958 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
+		8D582F3826C45230000CD958 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		8D582F3A26C45A25000CD958 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
 		8D582F3C26C518A8000CD958 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		8D582F3E26C51F98000CD958 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -86,7 +85,6 @@
 		8D582F6526C97865000CD958 /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
 		8D582F6726C97F71000CD958 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		8D582F6926C97FFD000CD958 /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
-		8D582F6B26C98F25000CD958 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		8D76CE3C26C2CEDB0088939E /* WhyShyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhyShyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76CE3F26C2CEDB0088939E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76CE4126C2CEDB0088939E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,13 +217,12 @@
 				8D582F6426C9782F000CD958 /* Profile */,
 				8D76CE5B26C2D1A00088939E /* Storyboards */,
 				8D76CE4826C2CEE10088939E /* Assets.xcassets */,
-				8D582F3826C45230000CD958 /* CaptionTextView.swift */,
+				8D582F3826C45230000CD958 /* InputTextView.swift */,
 				8D582F3E26C51F98000CD958 /* QuestionCell.swift */,
 				8D582F4C26C67C15000CD958 /* UserCell.swift */,
 				8D582F5026C6BD19000CD958 /* QuestionHeader.swift */,
 				8D582F5626C7DB81000CD958 /* ActionSheetCell.swift */,
 				8D582F5E26C84676000CD958 /* NotificationCell.swift */,
-				8D582F6B26C98F25000CD958 /* InputTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -402,13 +399,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D582F6C26C98F25000CD958 /* InputTextView.swift in Sources */,
 				8D582F5126C6BD19000CD958 /* QuestionHeader.swift in Sources */,
 				8D582F3326C4264D000CD958 /* UserService.swift in Sources */,
 				8D582F4126C546C1000CD958 /* QuestionViewModel.swift in Sources */,
 				8D76CE6126C2D3C30088939E /* NotificationsController.swift in Sources */,
 				8D582F4926C57187000CD958 /* ProfileFilterCell.swift in Sources */,
-				8D582F3926C45230000CD958 /* CaptionTextView.swift in Sources */,
+				8D582F3926C45230000CD958 /* InputTextView.swift in Sources */,
 				8D582F4D26C67C15000CD958 /* UserCell.swift in Sources */,
 				8D582F6326C96320000CD958 /* EditProfileController.swift in Sources */,
 				8D582F5726C7DB81000CD958 /* ActionSheetCell.swift in Sources */,

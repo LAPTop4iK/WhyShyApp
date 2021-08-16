@@ -176,7 +176,9 @@ extension FeedController: QuestionCellDelegate {
             
             //only upload notification if question is being liked
             guard !question.didLike else { return }
-            NotificationService.shared.uploadNotification(type: .like, question: question)
+            NotificationService.shared.uploadNotification(toUser: question.user,
+                                                          type: .like,
+                                                          questionId: question.questionId)
         }
     }
     

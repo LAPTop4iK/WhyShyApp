@@ -11,20 +11,19 @@ struct NotificationService {
     static let shared = NotificationService()
     private init() {}
     
-    func uploadNotification(type: NotificationType,
-                            question: Question? = nil,
-                            user: User? = nil) {
+    func uploadNotification(toUser user: User,
+                            type: NotificationType,
+                            questionId: String? = nil) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        var values: [String: Any] = ["timestamp": Int(Date().timeIntervalSince1970),
-                                     "uid": uid, "type": type.rawValue]
-        if let question = question {
-            values["questionId"] = question.questionId
-            REF_NOTIFICATIONS.child(question.user.uid).childByAutoId().updateChildValues(values)
-        } else if let user = user {
-            REF_NOTIFICATIONS.child(user.uid).childByAutoId().updateChildValues(values)
-            
+        var values: [String: Any] = ["timestamp": Int(NSDate().timeIntervalSince1970),
+                                     "uid": uid,
+                                     "type": type.rawValue]
+        if let questionId = questionId {
+            values["questionId"] = questionId
         }
+        REF_NOTIFICATIONS.child(user.uid).childByAutoId().updateChildValues(values)
+
     }
     
     func fetchNotifications(completion: @escaping([Notification]) -> Void) {

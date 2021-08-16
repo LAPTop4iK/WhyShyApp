@@ -53,7 +53,7 @@ class UploadQuestionController: UIViewController {
         return label
     }()
     
-    private let captionTextView = CaptionTextView()
+    private let captionTextView = InputTextView()
     
     //MARK: - Lifecycle
     
@@ -83,7 +83,9 @@ class UploadQuestionController: UIViewController {
             }
             
             if case .answer(let question) = self.config {
-                NotificationService.shared.uploadNotification(type: .answer, question: question)
+                NotificationService.shared.uploadNotification(toUser: question.user,
+                                                              type: .answer,
+                                                              questionId: question.questionId)
             }
             
             self.dismiss(animated: true, completion: nil)
